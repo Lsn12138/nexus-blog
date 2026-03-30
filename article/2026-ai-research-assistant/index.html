@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI驱动的研究助手：让AI帮你做深度调研 | NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/article-style.css">
+    <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+    <script>
+    var gitalk = new Gitalk({
+        clientID: 'Ov23li9QcQ2YvL4U0L16',
+        clientSecret: '9596df025070e490613226b6cee3059b06625c8',
+        repo: 'lsn-org.github.io',
+        owner: 'lsn-org',
+        admin: ['lsn-org'],
+        id: location.pathname,
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+    </script>
+</head>
+<body>
+    <div id="canvas-bg"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <header class="header" id="header">
+        <a href="/" class="logo">NEX<span>U</span>S</a>
+        <nav class="nav">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/categories/">分类</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
+    </header>
+    <section class="article-hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="article-meta">
+                <span class="article-date">2026.03.24</span>
+                <span class="article-category">AI</span>
+            </div>
+            <h1 class="article-title">AI驱动的研究助手：让AI帮你做深度调研</h1>
+            <div class="article-tags"><span class="article-tag">AI</span></div>
+        </div>
+    </section>
+    <article class="article-content-wrapper">
+        <div class="article-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>last30days-skill 是一个创新的 AI Agent 技能，能够自动在 Reddit、X、YouTube、Hacker News、Polymarket 等平台收集任意话题的信息，并综合提炼出有深度的研究报告。</p>
+<span id="more"></span>
+
+<h2 id="一、项目概述"><a href="#一、项目概述" class="headerlink" title="一、项目概述"></a>一、项目概述</h2><blockquote>
+<p>“AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary”<br>⭐ 11,179 | Today: 2,685 stars</p>
+</blockquote>
+<p>last30days-skill 的核心价值在于：<strong>将原本需要数天的调研工作压缩到分钟级别</strong>。</p>
+<h2 id="二、为什么需要-AI-研究助手？"><a href="#二、为什么需要-AI-研究助手？" class="headerlink" title="二、为什么需要 AI 研究助手？"></a>二、为什么需要 AI 研究助手？</h2><h3 id="2-1-传统调研的痛点"><a href="#2-1-传统调研的痛点" class="headerlink" title="2.1 传统调研的痛点"></a>2.1 传统调研的痛点</h3><ul>
+<li><strong>信息碎片化</strong>：需要浏览数十个网站和社交平台</li>
+<li><strong>时间成本高</strong>：完整调研一个话题通常需要 3-7 天</li>
+<li><strong>信息过载</strong>：难以区分高质量内容和噪音</li>
+<li><strong>时效性差</strong>：人工调研难以追踪最新动态</li>
+</ul>
+<h3 id="2-2-AI-研究助手如何解决"><a href="#2-2-AI-研究助手如何解决" class="headerlink" title="2.2 AI 研究助手如何解决"></a>2.2 AI 研究助手如何解决</h3><table>
+<thead>
+<tr>
+<th>痛点</th>
+<th>AI 解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>信息碎片化</td>
+<td>自动聚合多平台信息</td>
+</tr>
+<tr>
+<td>时间成本高</td>
+<td>并行处理，分钟级输出</td>
+</tr>
+<tr>
+<td>信息过载</td>
+<td>智能过滤与摘要</td>
+</tr>
+<tr>
+<td>时效性差</td>
+<td>实时追踪最新内容</td>
+</tr>
+</tbody></table>
+<h2 id="三、技术架构"><a href="#三、技术架构" class="headerlink" title="三、技术架构"></a>三、技术架构</h2><h3 id="3-1-数据源覆盖"><a href="#3-1-数据源覆盖" class="headerlink" title="3.1 数据源覆盖"></a>3.1 数据源覆盖</h3><p>last30days-skill 覆盖了互联网最有价值的信息源：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">📱 社交媒体</span><br><span class="line">   ├── Reddit - 社区讨论与深度帖</span><br><span class="line">   ├── X (Twitter) - 即时动态与专家观点</span><br><span class="line">   └── Hacker News - 技术社区洞察</span><br><span class="line"></span><br><span class="line">🎬 视频内容</span><br><span class="line">   └── YouTube - 视频教程与访谈</span><br><span class="line"></span><br><span class="line">📊 数据市场</span><br><span class="line">   └── Polymarket - 预测市场与民意趋势</span><br><span class="line"></span><br><span class="line">🌐 传统网络</span><br><span class="line">   └── Web Search - 全面覆盖</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-处理流程"><a href="#3-2-处理流程" class="headerlink" title="3.2 处理流程"></a>3.2 处理流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户查询 → 任务分解 → 多源并行抓取 → 信息清洗 → 综合分析 → 报告生成</span><br><span class="line">     ↓</span><br><span class="line">  质量评估 → 引用标注 → 最终输出</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-核心算法"><a href="#3-3-核心算法" class="headerlink" title="3.3 核心算法"></a>3.3 核心算法</h3><ol>
+<li><strong>多源信息抓取</strong>：异步并发抓取，保证速度</li>
+<li><strong>内容质量评分</strong>：基于来源权威性和互动指标</li>
+<li><strong>观点冲突检测</strong>：识别不同来源的矛盾观点</li>
+<li><strong>综合摘要生成</strong>：将多角度信息融合为连贯报告</li>
+</ol>
+<h2 id="四、使用场景"><a href="#四、使用场景" class="headerlink" title="四、使用场景"></a>四、使用场景</h2><h3 id="4-1-技术选型调研"><a href="#4-1-技术选型调研" class="headerlink" title="4.1 技术选型调研"></a>4.1 技术选型调研</h3><p>在选择一项新技术时，可以用 last30days：</p>
+<ul>
+<li>查看该技术在 HN 和 Reddit 的讨论热度</li>
+<li>了解开发者的真实使用体验</li>
+<li>对比不同方案的优缺点</li>
+<li>获取最新版本动态和路线图</li>
+</ul>
+<h3 id="4-2-市场趋势分析"><a href="#4-2-市场趋势分析" class="headerlink" title="4.2 市场趋势分析"></a>4.2 市场趋势分析</h3><ul>
+<li>追踪某个产品或领域的发展趋势</li>
+<li>分析竞争对手动态和用户口碑</li>
+<li>预测市场走向</li>
+</ul>
+<h3 id="4-3-学术研究辅助"><a href="#4-3-学术研究辅助" class="headerlink" title="4.3 学术研究辅助"></a>4.3 学术研究辅助</h3><ul>
+<li>快速了解某个研究方向的现状</li>
+<li>发现相关领域的最新论文</li>
+<li>追踪学术社区的讨论热点</li>
+</ul>
+<h2 id="五、使用方法"><a href="#五、使用方法" class="headerlink" title="五、使用方法"></a>五、使用方法</h2><h3 id="5-1-安装"><a href="#5-1-安装" class="headerlink" title="5.1 安装"></a>5.1 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 Claude Code 安装</span></span><br><span class="line">claude /install last30days-skill</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-基本使用"><a href="#5-2-基本使用" class="headerlink" title="5.2 基本使用"></a>5.2 基本使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/research 2026年大模型技术发展趋势</span><br></pre></td></tr></table></figure>
+
+<p>系统会自动：</p>
+<ol>
+<li>在多个平台搜索相关内容</li>
+<li>分析最近30天的讨论</li>
+<li>生成结构化研究报告</li>
+</ol>
+<h3 id="5-3-输出示例"><a href="#5-3-输出示例" class="headerlink" title="5.3 输出示例"></a>5.3 输出示例</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 2026年大模型技术趋势研究报告</span><br><span class="line"></span><br><span class="line">## 执行摘要</span><br><span class="line">（3个核心发现）</span><br><span class="line"></span><br><span class="line">## 详细分析</span><br><span class="line">### 1. 多模态成为标配</span><br><span class="line">[来自Reddit/HN的讨论汇总]</span><br><span class="line"></span><br><span class="line">### 2. 开源模型崛起</span><br><span class="line">[来自各平台的数据支撑]</span><br><span class="line"></span><br><span class="line">### 3. Agent应用爆发</span><br><span class="line">[社区反馈与预测]</span><br><span class="line"></span><br><span class="line">## 参考来源</span><br><span class="line">[按平台分类的引用列表]</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、局限性与注意事项"><a href="#六、局限性与注意事项" class="headerlink" title="六、局限性与注意事项"></a>六、局限性与注意事项</h2><ol>
+<li><strong>信息时效性</strong>：仅覆盖最近30天前的内容</li>
+<li><strong>来源偏见</strong>：社交媒体数据可能存在代表性偏差</li>
+<li><strong>深度局限</strong>：更适合快速调研而非深度学术研究</li>
+<li><strong>事实核查</strong>：AI摘要仍需人工核实关键数据</li>
+</ol>
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>last30days-skill 代表了 AI 辅助研究的最新方向——不是替代人类研究，而是<strong>大幅提升研究效率</strong>，让人能够聚焦于更高价值的分析和决策工作。</p>
+<p><strong>项目地址：</strong> <a target="_blank" rel="noopener" href="https://github.com/mvanhorn/last30days-skill">mvanhorn&#x2F;last30days-skill</a></p>
+<hr>
+<p><em>阅读时长：约6分钟 | 关键词：AI研究助手、信息聚合、调研工具、last30days</em></p>
+</div>
+    </article>
+    <div class="comments-section">
+        <h2 class="comments-title">💬 评论</h2>
+        <div id="gitalk-container"></div>
+    </div>
+    <footer class="footer">
+        <p>© 2026 NEXUS — All Rights Reserved</p>
+        <p><a href="/">← 返回首页</a></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    (function() {
+        var c = document.getElementById('canvas-bg');
+        if (!c) return;
+        var s = new THREE.Scene(), ca = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        ca.position.z = 50;
+        var r = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        r.setSize(window.innerWidth, window.innerHeight);
+        c.appendChild(r.domElement);
+        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.5 });
+        var ps = [];
+        for (var i = 0; i < 50; i++) {
+            var pm = new THREE.Mesh(g, m.clone());
+            pm.position.x = (Math.random() - 0.5) * 80;
+            pm.position.y = (Math.random() - 0.5) * 80;
+            pm.position.z = (Math.random() - 0.5) * 40;
+            pm.userData = { vx: (Math.random() - 0.5) * 0.02, vy: (Math.random() - 0.5) * 0.02 };
+            ps.push(pm);
+            s.add(pm);
+        }
+        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.08 });
+        for (var i = 0; i < ps.length; i++) {
+            for (var j = i + 1; j < ps.length; j++) {
+                if (ps[i].position.distanceTo(ps[j].position) < 20) {
+                    var l = new THREE.Line(new THREE.BufferGeometry().setFromPoints([ps[i].position, ps[j].position]), lm);
+                    ls.push({ line: l, p1: i, p2: j });
+                    s.add(l);
+                }
+            }
+        }
+        var mx = 0, my = 0;
+        document.addEventListener('mousemove', function(e) { mx = (e.clientX - window.innerWidth / 2) * 0.0005; my = (e.clientY - window.innerHeight / 2) * 0.0005; });
+        window.addEventListener('resize', function() { ca.aspect = window.innerWidth / window.innerHeight; ca.updateProjectionMatrix(); r.setSize(window.innerWidth, window.innerHeight); });
+        function a() {
+            requestAnimationFrame(a);
+            ps.forEach(function(p) { p.position.x += p.userData.vx; p.position.y += p.userData.vy; if (Math.abs(p.position.x) > 40) p.userData.vx *= -1; if (Math.abs(p.position.y) > 40) p.userData.vy *= -1; });
+            ls.forEach(function(c) { var pos = c.line.geometry.attributes.position.array; pos[0] = ps[c.p1].position.x; pos[1] = ps[c.p1].position.y; pos[2] = ps[c.p1].position.z; pos[3] = ps[c.p2].position.x; pos[4] = ps[c.p2].position.y; pos[5] = ps[c.p2].position.z; c.line.geometry.attributes.position.needsUpdate = true; });
+            ca.position.x += (mx * 10 - ca.position.x) * 0.02;
+            ca.position.y += (-my * 10 - ca.position.y) * 0.02;
+            ca.lookAt(s.position);
+            r.render(s, ca);
+        }
+        a();
+    })();
+    window.addEventListener('scroll', function() {
+        var s = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+        document.getElementById('scroll-progress').style.width = s + '%';
+        var h = document.getElementById('header');
+        if (h) { if (window.scrollY > 50) h.classList.add('scrolled'); else h.classList.remove('scrolled'); }
+    });
+    </script>
+</body>
+</html>

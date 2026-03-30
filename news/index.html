@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News - NEXUS</title>
+    <script src="/news/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-pink: #ff006e;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(10, 10, 20, 0.8);
+        }
+        
+        body {
+            font-family: 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px 48px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 8px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+        
+        .breadcrumb a:hover { color: var(--neon-blue); }
+        
+        .breadcrumb .separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .breadcrumb .current {
+            color: var(--neon-blue);
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 48px 60px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .page-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            padding: 8px 20px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(0, 243, 255, 0.05);
+        }
+        
+        .page-header h1 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+        }
+        
+        .page-header p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 8px;
+            padding: 36px 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .news-card:hover::before { height: 100%; }
+        
+        .news-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.15);
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .news-date {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--neon-blue);
+        }
+        
+        .news-tags {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .tag {
+            background: rgba(0, 243, 255, 0.08);
+            color: var(--neon-blue);
+            padding: 4px 14px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .news-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #fff;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+        
+        .news-content {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 2;
+            font-size: 15px;
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+        
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .read-time {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        
+        .download-link {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 14px 28px;
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-radius: 4px;
+        }
+        
+        .download-link:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .download-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            z-index: 9999;
+            width: 0%;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid rgba(0, 243, 255, 0.15);
+            padding: 64px 48px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .header { padding: 20px 24px; flex-direction: column; gap: 16px; }
+            .container { padding: 120px 24px 40px; }
+            .page-header h1 { font-size: 36px; }
+            .news-card { padding: 28px; }
+            .news-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-bg"></div>
+    <div id="canvas-container"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <header class="header" id="header">
+        <a href="/" class="logo">NEXUS</a>
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">/</span>
+            <span class="current">News</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <div class="page-label">Latest Updates</div>
+            <h1>Tech News</h1>
+            <p>最新行业动态 · 技术前沿 · 深度解析</p>
+        </div>
+
+        <div class="news-list">
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.25</span>
+                    <div class="news-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">Future</span>
+                    </div>
+                </div>
+                <h2 class="news-title">2026 年 AI 技术发展趋势展望</h2>
+                <p class="news-content">
+                    随着大模型技术的持续演进，2026 年 AI 领域将迎来哪些突破性进展？从多模态理解到自主代理，
+                    从边缘计算到量子 AI，本文深度解析今年最值得关注的技术趋势。我们将探讨 GPT-5 的潜在能力、
+                    多模态模型的突破、AI 安全性的提升，以及 AI 在各行业的实际应用案例。
+                    <br><br>
+                    主要内容包括：大语言模型的最新进展、多模态 AI 的应用场景、AI 代理的自主化趋势、
+                    边缘 AI 的计算优化、量子机器研究的突破，以及 AI 伦理与安全的新挑战。
+                </p>
+                <div class="news-footer">
+                    <span class="read-time">8 min read</span>
+                    <a href="/downloads/ai-trends-2026.pdf" class="download-link">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.24</span>
+                    <div class="news-tags">
+                        <span class="tag">Security</span>
+                        <span class="tag">HTTPS</span>
+                        <span class="tag">SSL</span>
+                    </div>
+                </div>
+                <h2 class="news-title">HTTPS 普及率创新高，SSL 证书成为网站标配</h2>
+                <p class="news-content">
+                    根据最新统计数据，全球 HTTPS 网站占比已突破 95%。SSL/TLS 加密已成为现代网站的必备配置，
+                    不仅保障用户数据安全，更是搜索引擎排名的重要因素。
+                    <br><br>
+                    本文详细介绍了：SSL 证书的类型与选择、免费证书申请流程、Nginx/Apache 配置指南、
+                    HSTS 安全策略、OCSP Stapling 优化、以及常见问题的排查方法。
+                </p>
+                <div class="news-footer">
+                    <span class="read-time">6 min read</span>
+                    <a href="/downloads/https-guide.pdf" class="download-link">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.23</span>
+                    <div class="news-tags">
+                        <span class="tag">Nginx</span>
+                        <span class="tag">Performance</span>
+                        <span class="tag">Server</span>
+                    </div>
+                </div>
+                <h2 class="news-title">Nginx 1.26 发布：性能提升 30%</h2>
+                <p class="news-content">
+                    广受欢迎的 Web 服务器 Nginx 发布了最新的 1.26 版本，带来显著的性能优化和新特性支持。
+                    新版在 HTTP/3 支持、TLS 1.3 优化以及内存管理方面都有重大改进。
+                    <br><br>
+                    新版本特性：HTTP/3 完整支持、TLS 1.3 性能优化、改进的负载均衡算法、更高效的内存管理、
+                    增强的监控指标、以及更好的容器化支持。本文提供详细的升级指南和配置优化建议。
+                </p>
+                <div class="news-footer">
+                    <span class="read-time">5 min read</span>
+                    <a href="/downloads/nginx-optimization.pdf" class="download-link">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download PDF
+                    </a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.22</span>
+                    <div class="news-tags">
+                        <span class="tag">Web Dev</span>
+                        <span class="tag">Frontend</span>
+                        <span class="tag">Stack</span>
+                    </div>
+                </div>
+                <h2 class="news-title">现代 Web 开发技术栈选型指南</h2>
+                <p class="news-content">
+                    面对层出不穷的前端框架和工具，如何选择适合自己项目的技术栈？本文对比了 React、Vue、
+                    Svelte 等主流框架的优缺点，分析了构建工具、状态管理、CSS 方案等关键技术点的选型策略。
+                    <br><br>
+                    内容涵盖：前端框架对比、构建工具选择、状态管理方案、CSS 解决方案、TypeScript 集成、
+                    以及项目规模与选型的关系。
+                </p>
+                <div class="news-footer">
+                    <span class="read-time">10 min read</span>
+                    <a href="/downloads/web-dev-roadmap.pdf" class="download-link">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Download PDF
+                    </a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 NEXUS — All Rights Reserved</p>
+        <p>Powered by Nginx + SSL + Three.js</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1500;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x00f3ff,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        camera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+            const elapsedTime = clock.getElapsedTime();
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = mouseY * 0.5;
+            particlesMesh.rotation.y += mouseX * 0.5;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

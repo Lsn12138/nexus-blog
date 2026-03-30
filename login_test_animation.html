@@ -1,0 +1,222 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>登录测试动画</title>
+        <style>
+            body {
+                font-family: 'Courier New', monospace;
+                background: #0a0a0f;
+                color: #00f3ff;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: rgba(10, 10, 20, 0.9);
+                border: 1px solid #00f3ff;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            }
+            .frame {
+                display: none;
+                animation: fadeIn 0.5s;
+            }
+            .frame.active {
+                display: block;
+            }
+            .terminal {
+                background: #000;
+                color: #0f0;
+                padding: 20px;
+                border-radius: 5px;
+                font-family: monospace;
+                white-space: pre-wrap;
+                margin: 10px 0;
+                border: 1px solid #333;
+            }
+            .progress-bar {
+                width: 100%;
+                height: 20px;
+                background: #222;
+                border-radius: 10px;
+                overflow: hidden;
+                margin: 10px 0;
+            }
+            .progress {
+                height: 100%;
+                background: linear-gradient(90deg, #00f3ff, #bc13fe);
+                width: 0%;
+                transition: width 1s;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .controls {
+                margin-top: 20px;
+                text-align: center;
+            }
+            button {
+                background: linear-gradient(135deg, #00f3ff, #bc13fe);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                margin: 0 5px;
+            }
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+            }
+            h1 {
+                text-align: center;
+                color: #bc13fe;
+                text-shadow: 0 0 10px rgba(188, 19, 254, 0.5);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🎬 登录测试动画演示</h1>
+            
+            <div id="frame1" class="frame active">
+                <div class="terminal">
+🌐 打开登录页面...
+https://dev.mfanjk.com/#/login
+
+[###########--------] 50%
+                </div>
+            </div>
+            
+            <div id="frame2" class="frame">
+                <div class="terminal">
+🔍 识别登录表单元素...
+
+📝 用户名输入框: [请输入用户名]
+🔐 密码输入框: [请输入密码]
+🔘 登录按钮: [登录]
+                </div>
+            </div>
+            
+            <div id="frame3" class="frame">
+                <div class="terminal">
+⌨️  输入用户名...
+
+📝 用户名: [testuser]
+🔐 密码: [                ]
+🔘 登录按钮: [登录]
+                </div>
+            </div>
+            
+            <div id="frame4" class="frame">
+                <div class="terminal">
+⌨️  输入密码...
+
+📝 用户名: [testuser]
+🔐 密码: [●●●●●●●●●●●●]
+🔘 登录按钮: [登录]
+                </div>
+            </div>
+            
+            <div id="frame5" class="frame">
+                <div class="terminal">
+🖱️  点击登录按钮...
+
+📝 用户名: [testuser]
+🔐 密码: [●●●●●●●●●●●●]
+🔘 登录按钮: [💥 点击!]
+                </div>
+            </div>
+            
+            <div id="frame6" class="frame">
+                <div class="terminal">
+⏳ 等待登录响应...
+
+🔄 正在验证账号信息...
+🔄 正在检查密码...
+🔄 正在跳转页面...
+                </div>
+            </div>
+            
+            <div id="frame7" class="frame">
+                <div class="terminal">
+❌ 登录失败！
+
+⚠️  页面未跳转
+⚠️  仍停留在登录页
+⚠️  没有错误提示
+
+🔍 可能原因：
+1. 账号密码错误
+2. 需要验证码
+3. 账号被锁定
+4. 网络请求失败
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="prevFrame()">⬅️ 上一帧</button>
+                <button onclick="nextFrame()">下一帧 ➡️</button>
+                <button onclick="playAnimation()">🎬 播放动画</button>
+            </div>
+        </div>
+
+        <script>
+            let currentFrame = 1;
+            const totalFrames = 7;
+            
+            function showFrame(frameNum) {
+                // 隐藏所有帧
+                for (let i = 1; i <= totalFrames; i++) {
+                    document.getElementById('frame' + i).classList.remove('active');
+                }
+                // 显示当前帧
+                document.getElementById('frame' + frameNum).classList.add('active');
+                
+                // 更新进度条
+                const progress = (frameNum / totalFrames) * 100;
+                document.getElementById('progress').style.width = progress + '%';
+                
+                currentFrame = frameNum;
+            }
+            
+            function nextFrame() {
+                if (currentFrame < totalFrames) {
+                    showFrame(currentFrame + 1);
+                }
+            }
+            
+            function prevFrame() {
+                if (currentFrame > 1) {
+                    showFrame(currentFrame - 1);
+                }
+            }
+            
+            function playAnimation() {
+                let frame = 1;
+                const interval = setInterval(() => {
+                    showFrame(frame);
+                    frame++;
+                    if (frame > totalFrames) {
+                        clearInterval(interval);
+                    }
+                }, 1500);
+            }
+            
+            // 初始化
+            showFrame(1);
+        </script>
+    </body>
+    </html>
+    

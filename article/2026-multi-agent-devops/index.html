@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多智能体系统实战：用Claude Code团队协作开发 | NEXUS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/article-style.css">
+    <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
+    <script>
+    var gitalk = new Gitalk({
+        clientID: 'Ov23li9QcQ2YvL4U0L16',
+        clientSecret: '9596df025070e490613226b6cee3059b06625c8',
+        repo: 'lsn-org.github.io',
+        owner: 'lsn-org',
+        admin: ['lsn-org'],
+        id: location.pathname,
+        distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+    </script>
+</head>
+<body>
+    <div id="canvas-bg"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <header class="header" id="header">
+        <a href="/" class="logo">NEX<span>U</span>S</a>
+        <nav class="nav">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/categories/">分类</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
+    </header>
+    <section class="article-hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="article-meta">
+                <span class="article-date">2026.03.23</span>
+                <span class="article-category">AI</span>
+            </div>
+            <h1 class="article-title">多智能体系统实战：用Claude Code团队协作开发</h1>
+            <div class="article-tags"><span class="article-tag">AI</span></div>
+        </div>
+    </section>
+    <article class="article-content-wrapper">
+        <div class="article-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>oh-my-claudecode 是近期开源的多智能体开发框架，专为 Claude Code 设计，实现了「团队协作」式的软件开发流程。一个过去需要多人团队才能完成的项目，现在可以由多个 AI Agent 分工合作完成。</p>
+<span id="more"></span>
+
+<h2 id="一、项目简介"><a href="#一、项目简介" class="headerlink" title="一、项目简介"></a>一、项目简介</h2><blockquote>
+<p>“Teams-first Multi-agent orchestration for Claude Code”<br>⭐ 13,119 | Today: 598 stars</p>
+</blockquote>
+<p>oh-my-claudecode 的核心理念是：<strong>让 AI Agent 像人类团队一样协作开发</strong>。</p>
+<h2 id="二、为什么需要-AI-团队？"><a href="#二、为什么需要-AI-团队？" class="headerlink" title="二、为什么需要 AI 团队？"></a>二、为什么需要 AI 团队？</h2><h3 id="2-1-单-Agent-的瓶颈"><a href="#2-1-单-Agent-的瓶颈" class="headerlink" title="2.1 单 Agent 的瓶颈"></a>2.1 单 Agent 的瓶颈</h3><p>单个 Claude Code 实例在处理大型项目时面临挑战：</p>
+<ul>
+<li><strong>上下文溢出</strong>：复杂项目的代码量超过上下文窗口</li>
+<li><strong>能力单一</strong>：架构设计、编码、测试需要不同视角</li>
+<li><strong>疲劳效应</strong>：长会话中后期质量下降</li>
+</ul>
+<h3 id="2-2-AI-团队的优势"><a href="#2-2-AI-团队的优势" class="headerlink" title="2.2 AI 团队的优势"></a>2.2 AI 团队的优势</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">传统模式：一人完成所有工作</span><br><span class="line">├── 架构设计（耗时但不产出代码）</span><br><span class="line">├── 编码实现（核心工作）</span><br><span class="line">├── 单元测试（容易被跳过）</span><br><span class="line">├── 代码审查（容易主观）</span><br><span class="line">└── 文档编写（经常被遗忘）</span><br><span class="line"></span><br><span class="line">AI团队模式：专业化分工</span><br><span class="line">├── 架构师 Agent → 系统设计</span><br><span class="line">├── 开发者 Agent → 编码实现</span><br><span class="line">├── 测试 Agent → 质量保证</span><br><span class="line">├── 审查 Agent → 代码审查</span><br><span class="line">└── 文案 Agent → 文档输出</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、核心功能"><a href="#三、核心功能" class="headerlink" title="三、核心功能"></a>三、核心功能</h2><h3 id="3-1-角色定义系统"><a href="#3-1-角色定义系统" class="headerlink" title="3.1 角色定义系统"></a>3.1 角色定义系统</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># team-config.yaml</span></span><br><span class="line"><span class="attr">roles:</span></span><br><span class="line">  <span class="attr">architect:</span></span><br><span class="line">    <span class="attr">model:</span> <span class="string">claude-opus</span></span><br><span class="line">    <span class="attr">prompt:</span> <span class="string">你是一位资深系统架构师...</span></span><br><span class="line">    <span class="attr">tools:</span> [<span class="string">code</span>, <span class="string">search</span>, <span class="string">file_read</span>]</span><br><span class="line">  </span><br><span class="line">  <span class="attr">developer:</span></span><br><span class="line">    <span class="attr">model:</span> <span class="string">claude-sonnet</span></span><br><span class="line">    <span class="attr">prompt:</span> <span class="string">你是一位全栈工程师...</span></span><br><span class="line">    <span class="attr">tools:</span> [<span class="string">code</span>, <span class="string">bash</span>, <span class="string">file_write</span>]</span><br><span class="line">  </span><br><span class="line">  <span class="attr">tester:</span></span><br><span class="line">    <span class="attr">model:</span> <span class="string">claude-haiku</span></span><br><span class="line">    <span class="attr">prompt:</span> <span class="string">你是一位QA工程师...</span></span><br><span class="line">    <span class="attr">tools:</span> [<span class="string">code</span>, <span class="string">bash</span>, <span class="string">test</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-任务分配机制"><a href="#3-2-任务分配机制" class="headerlink" title="3.2 任务分配机制"></a>3.2 任务分配机制</h3><p>系统支持多种任务分配策略：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sequential</td>
+<td>顺序执行</td>
+<td>需要前后依赖</td>
+</tr>
+<tr>
+<td>parallel</td>
+<td>并行执行</td>
+<td>独立子任务</td>
+</tr>
+<tr>
+<td>hierarchical</td>
+<td>层级分派</td>
+<td>主从协调</td>
+</tr>
+<tr>
+<td>dynamic</td>
+<td>动态分配</td>
+<td>复杂工作流</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-通信协议"><a href="#3-3-通信协议" class="headerlink" title="3.3 通信协议"></a>3.3 通信协议</h3><p>Agent 之间通过结构化消息通信：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="string">&quot;architect&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;to&quot;</span><span class="punctuation">:</span> <span class="string">&quot;developer&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;task_assignment&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;task_id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;impl-auth-module&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;spec&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用户认证模块...&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;setup-db-schema&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;deadline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2026-03-27T12:00:00Z&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、实战演示"><a href="#四、实战演示" class="headerlink" title="四、实战演示"></a>四、实战演示</h2><h3 id="4-1-场景：开发一个博客系统"><a href="#4-1-场景：开发一个博客系统" class="headerlink" title="4.1 场景：开发一个博客系统"></a>4.1 场景：开发一个博客系统</h3><p><strong>传统方式</strong>（单 Agent）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 输入需求</span><br><span class="line">2. 等待 Claude Code 生成完整代码</span><br><span class="line">3. 手动处理上下文溢出问题</span><br><span class="line">4. 手动拆分和组织代码</span><br></pre></td></tr></table></figure>
+
+<p><strong>AI 团队方式</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">architect Agent → 产出系统设计文档</span><br><span class="line">      ↓</span><br><span class="line">developer Agent → 编写各个模块代码</span><br><span class="line">      ↓</span><br><span class="line">tester Agent → 生成测试用例并执行</span><br><span class="line">      ↓</span><br><span class="line">reviewer Agent → 代码审查并提出改进建议</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-关键差异"><a href="#4-2-关键差异" class="headerlink" title="4.2 关键差异"></a>4.2 关键差异</h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>单 Agent</th>
+<th>AI 团队</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发时间</td>
+<td>长</td>
+<td>短（并行工作）</td>
+</tr>
+<tr>
+<td>代码质量</td>
+<td>一般</td>
+<td>更高（专业化分工）</td>
+</tr>
+<tr>
+<td>可维护性</td>
+<td>一般</td>
+<td>更好（架构先行）</td>
+</tr>
+<tr>
+<td>上下文管理</td>
+<td>复杂</td>
+<td>自然拆分</td>
+</tr>
+</tbody></table>
+<h2 id="五、使用指南"><a href="#五、使用指南" class="headerlink" title="五、使用指南"></a>五、使用指南</h2><h3 id="5-1-安装"><a href="#5-1-安装" class="headerlink" title="5.1 安装"></a>5.1 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 克隆项目</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Yeachan-Heo/oh-my-claudecode.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line"><span class="built_in">cd</span> oh-my-claudecode</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 API Key</span></span><br><span class="line"><span class="built_in">export</span> ANTHROPIC_API_KEY=your_key_here</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-启动团队"><a href="#5-2-启动团队" class="headerlink" title="5.2 启动团队"></a>5.2 启动团队</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化团队</span></span><br><span class="line">claude-team --init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 分配任务</span></span><br><span class="line">claude-team --task <span class="string">&quot;开发一个电商网站的商品模块&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进度</span></span><br><span class="line">claude-team --status</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、适用场景"><a href="#六、适用场景" class="headerlink" title="六、适用场景"></a>六、适用场景</h2><h3 id="6-1-最佳实践场景"><a href="#6-1-最佳实践场景" class="headerlink" title="6.1 最佳实践场景"></a>6.1 最佳实践场景</h3><ul>
+<li>✅ <strong>大型项目拆分</strong>：需要拆分成多个子项目</li>
+<li>✅ <strong>原型快速开发</strong>：需要快速验证可行性</li>
+<li>✅ <strong>代码审查</strong>：多个视角的自动化审查</li>
+<li>✅ <strong>文档生成</strong>：自动生成技术文档</li>
+</ul>
+<h3 id="6-2-不适用场景"><a href="#6-2-不适用场景" class="headerlink" title="6.2 不适用场景"></a>6.2 不适用场景</h3><ul>
+<li>❌ 简单脚本（开销大于收益）</li>
+<li>❌ 高度创意性工作（需要人类判断）</li>
+<li>❌ 敏感系统（AI 生成的代码需要人工审计）</li>
+</ul>
+<h2 id="七、局限性"><a href="#七、局限性" class="headerlink" title="七、局限性"></a>七、局限性</h2><ol>
+<li><strong>成本较高</strong>：多个 Agent 同时运行，API 消耗成倍增加</li>
+<li><strong>协调复杂性</strong>：Agent 间的通信可能产生误解</li>
+<li><strong>调试困难</strong>：出问题需要追踪多个 Agent 的行为</li>
+<li><strong>安全考虑</strong>：多人协作场景的权限管理复杂</li>
+</ol>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>oh-my-claudecode 开创了 AI 团队协作开发的新范式。虽然目前还在早期阶段，但它展示了未来软件开发的可能性——<strong>不是用 AI 替代开发者，而是让 AI 承担更多重复性工作，让人聚焦于真正的创意和决策</strong>。</p>
+<p><strong>项目地址：</strong> <a target="_blank" rel="noopener" href="https://github.com/Yeachan-Heo/oh-my-claudecode">Yeachan-Heo&#x2F;oh-my-claudecode</a></p>
+<hr>
+<p><em>阅读时长：约7分钟 | 关键词：Claude Code、多智能体、团队协作、开发效率、oh-my-claudecode</em></p>
+</div>
+    </article>
+    <div class="comments-section">
+        <h2 class="comments-title">💬 评论</h2>
+        <div id="gitalk-container"></div>
+    </div>
+    <footer class="footer">
+        <p>© 2026 NEXUS — All Rights Reserved</p>
+        <p><a href="/">← 返回首页</a></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+    (function() {
+        var c = document.getElementById('canvas-bg');
+        if (!c) return;
+        var s = new THREE.Scene(), ca = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        ca.position.z = 50;
+        var r = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        r.setSize(window.innerWidth, window.innerHeight);
+        c.appendChild(r.domElement);
+        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.5 });
+        var ps = [];
+        for (var i = 0; i < 50; i++) {
+            var pm = new THREE.Mesh(g, m.clone());
+            pm.position.x = (Math.random() - 0.5) * 80;
+            pm.position.y = (Math.random() - 0.5) * 80;
+            pm.position.z = (Math.random() - 0.5) * 40;
+            pm.userData = { vx: (Math.random() - 0.5) * 0.02, vy: (Math.random() - 0.5) * 0.02 };
+            ps.push(pm);
+            s.add(pm);
+        }
+        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.08 });
+        for (var i = 0; i < ps.length; i++) {
+            for (var j = i + 1; j < ps.length; j++) {
+                if (ps[i].position.distanceTo(ps[j].position) < 20) {
+                    var l = new THREE.Line(new THREE.BufferGeometry().setFromPoints([ps[i].position, ps[j].position]), lm);
+                    ls.push({ line: l, p1: i, p2: j });
+                    s.add(l);
+                }
+            }
+        }
+        var mx = 0, my = 0;
+        document.addEventListener('mousemove', function(e) { mx = (e.clientX - window.innerWidth / 2) * 0.0005; my = (e.clientY - window.innerHeight / 2) * 0.0005; });
+        window.addEventListener('resize', function() { ca.aspect = window.innerWidth / window.innerHeight; ca.updateProjectionMatrix(); r.setSize(window.innerWidth, window.innerHeight); });
+        function a() {
+            requestAnimationFrame(a);
+            ps.forEach(function(p) { p.position.x += p.userData.vx; p.position.y += p.userData.vy; if (Math.abs(p.position.x) > 40) p.userData.vx *= -1; if (Math.abs(p.position.y) > 40) p.userData.vy *= -1; });
+            ls.forEach(function(c) { var pos = c.line.geometry.attributes.position.array; pos[0] = ps[c.p1].position.x; pos[1] = ps[c.p1].position.y; pos[2] = ps[c.p1].position.z; pos[3] = ps[c.p2].position.x; pos[4] = ps[c.p2].position.y; pos[5] = ps[c.p2].position.z; c.line.geometry.attributes.position.needsUpdate = true; });
+            ca.position.x += (mx * 10 - ca.position.x) * 0.02;
+            ca.position.y += (-my * 10 - ca.position.y) * 0.02;
+            ca.lookAt(s.position);
+            r.render(s, ca);
+        }
+        a();
+    })();
+    window.addEventListener('scroll', function() {
+        var s = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight) * 100;
+        document.getElementById('scroll-progress').style.width = s + '%';
+        var h = document.getElementById('header');
+        if (h) { if (window.scrollY > 50) h.classList.add('scrolled'); else h.classList.remove('scrolled'); }
+    });
+    </script>
+</body>
+</html>

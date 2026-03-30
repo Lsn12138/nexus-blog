@@ -1,0 +1,234 @@
+/* ==================== 3D 科技风自定义特效 ==================== */
+
+/* 霓虹发光卡片效果 */
+.card-widget {
+  background: rgba(5, 15, 25, 0.85) !important;
+  border: 1px solid rgba(0, 255, 136, 0.25) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.08);
+}
+
+.card-widget:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 0 50px rgba(0, 255, 136, 0.25), 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 255, 136, 0.5) !important;
+}
+
+/* 文章卡片3D悬浮 */
+.card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 255, 136, 0.15);
+}
+
+/* 导航栏玻璃态 */
+#nav {
+  background: rgba(5, 10, 15, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 255, 136, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 导航链接悬停发光 */
+#nav .menus_items .menus_item a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#nav .menus_items .menus_item a:hover {
+  color: #00ff88 !important;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+}
+
+/* 霓虹标题效果 */
+h1, h2, h3, h4 {
+  background: linear-gradient(90deg, #00ff88, #66ffbb, #00ff88);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 首页Hero区域 */
+#page-header {
+  background: transparent !important;
+}
+
+/* 侧边栏 */
+.aside-list-item {
+  border-left: 3px solid #00ff88;
+  transition: all 0.3s ease;
+  padding-left: 12px;
+  margin-left: -5px;
+  border-radius: 0 8px 8px 0;
+}
+
+.aside-list-item:hover {
+  border-left-color: #ff6b6b;
+  background: rgba(0, 255, 136, 0.08);
+}
+
+/* 文章内容区玻璃态 */
+#article-container {
+  background: rgba(5, 15, 25, 0.7) !important;
+  border-radius: 20px !important;
+  padding: 30px 40px !important;
+  border: 1px solid rgba(0, 255, 136, 0.12) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff88, #00cc6a);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #66ffbb, #00ff88); }
+
+/* 按钮 */
+.btn {
+  background: linear-gradient(135deg, #00ff88, #00cc6a) !important;
+  border: none !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
+  transition: all 0.3s ease !important;
+  border-radius: 8px !important;
+}
+
+.btn:hover {
+  box-shadow: 0 0 50px rgba(0, 255, 136, 0.55), 0 0 100px rgba(0, 255, 136, 0.2) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* 标签 */
+.tag {
+  background: rgba(0, 255, 136, 0.1) !important;
+  border: 1px solid rgba(0, 255, 136, 0.3) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 20px !important;
+}
+
+.tag:hover {
+  background: linear-gradient(135deg, #00ff88, #00cc6a) !important;
+  color: #fff !important;
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.5) !important;
+  transform: scale(1.1) translateY(-2px) !important;
+  border-color: transparent !important;
+}
+
+/* 友链卡片 */
+.flink .flink-item {
+  background: rgba(5, 15, 25, 0.75) !important;
+  border: 1px solid rgba(0, 255, 136, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  border-radius: 12px !important;
+}
+
+.flink .flink-item:hover {
+  border-color: #00ff88 !important;
+  box-shadow: 0 0 40px rgba(0, 255, 136, 0.25) !important;
+  transform: translateY(-8px) scale(1.03) !important;
+  background: rgba(0, 255, 136, 0.1) !important;
+}
+
+/* 代码块 */
+.highlight {
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 255, 136, 0.15) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.05) !important;
+}
+
+/* 页面切换动画 */
+main {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3D文字阴影 */
+#site-title {
+  text-shadow: 0 0 40px rgba(0, 255, 136, 0.5), 0 0 80px rgba(0, 255, 136, 0.2);
+}
+
+/* 引用块 */
+blockquote {
+  background: rgba(0, 255, 136, 0.08) !important;
+  border-left: 4px solid #00ff88 !important;
+  border-radius: 0 12px 12px 0 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+/* 搜索框 */
+#search-button {
+  background: rgba(0, 255, 136, 0.15) !important;
+  border: 1px solid rgba(0, 255, 136, 0.3) !important;
+  border-radius: 20px !important;
+  transition: all 0.3s ease !important;
+}
+
+#search-button:hover {
+  background: rgba(0, 255, 136, 0.3) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
+}
+
+/* 分割线 */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff88, transparent);
+  margin: 30px 0;
+}
+
+/* 进度条 */
+#nav #nav-totop {
+  background: linear-gradient(135deg, #00ff88, #00cc6a) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4) !important;
+}
+
+/* 分页 */
+.pagination .page-link {
+  background: rgba(0, 255, 136, 0.1) !important;
+  border: 1px solid rgba(0, 255, 136, 0.2) !important;
+  color: #00ff88 !important;
+  transition: all 0.3s ease !important;
+}
+
+.pagination .page-link:hover,
+.pagination .page-item.active .page-link {
+  background: linear-gradient(135deg, #00ff88, #00cc6a) !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4) !important;
+}
+
+/* 返回顶部 */
+#rightside {
+  background: rgba(5, 15, 25, 0.8) !important;
+  border: 1px solid rgba(0, 255, 136, 0.2) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 12px !important;
+}
+
+#rightside:hover {
+  border-color: #00ff88 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3) !important;
+}
+
+/* body背景 */
+body {
+  background: linear-gradient(135deg, #050a0f 0%, #0a1520 40%, #061218 70%, #050a0f 100%) !important;
+  background-attachment: fixed !important;
+}
+
+/* 遮罩层 */
+#web_bg {
+  background: transparent !important;
+}

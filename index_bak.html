@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>NEXUS - 探索前沿科技 | NEXUS - 探索前沿科技</title><meta name="author" content="NEXUS"><meta name="copyright" content="NEXUS"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NEXUS - 探索前沿科技                   * { margin: 0; padding: 0; box-sizing: border-box; }                  :root {             --neon-blue: #00f3ff;             --neon-purple: #bc13fe;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NEXUS - 探索前沿科技">
+<meta property="og:url" content="https://www.lsn.org.cn/index_bak">
+<meta property="og:site_name" content="NEXUS - 探索前沿科技">
+<meta property="og:description" content="NEXUS - 探索前沿科技                   * { margin: 0; padding: 0; box-sizing: border-box; }                  :root {             --neon-blue: #00f3ff;             --neon-purple: #bc13fe;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.lsn.org.cn/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-27T09:41:51.312Z">
+<meta property="article:modified_time" content="2026-03-27T09:41:51.312Z">
+<meta property="article:author" content="NEXUS">
+<meta property="article:tag" content="AI, 大模型, 技术博客, 云原生, Web开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.lsn.org.cn/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.lsn.org.cn/index_bak"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="/css/3d-effects.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'NEXUS - 探索前沿科技',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="NEXUS - 探索前沿科技" type="application/atom+xml">
+</head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">NEXUS - 探索前沿科技</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - 探索前沿科技</title>
+    <script src="/news/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-pink: #ff006e;
+            --dark-bg: #0a0a0f;
+            --card-bg: rgba(10, 10, 20, 0.8);
+        }
+        
+        body {
+            font-family: 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+        }
+        
+        .scroll-progress {
+            position: fixed; top: 0; left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            z-index: 9999;
+            width: 0%;
+        }
+        
+        .header {
+            position: fixed; top: 0; left: 0;
+            width: 100%; padding: 24px 48px;
+            display: flex; align-items: center; gap: 30px;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+        }
+        
+        .logo {
+            font-size: 24px; font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none; letter-spacing: 8px;
+        }
+        
+        .nav-links {
+            display: flex; gap: 32px; margin-left: auto;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.6); text-decoration: none;
+            font-size: 11px; text-transform: uppercase;
+            letter-spacing: 2px; transition: all 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--neon-blue); }
+        
+        .breadcrumb {
+            display: flex; align-items: center; gap: 12px;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255,255,255,0.5); text-decoration: none;
+            font-size: 11px; text-transform: uppercase;
+            letter-spacing: 2px; transition: all 0.3s;
+        }
+        
+        .breadcrumb a:hover { color: var(--neon-blue); }
+        .breadcrumb .separator { color: rgba(255,255,255,0.3); }
+        .breadcrumb .current { color: var(--neon-blue); font-weight: 600; }
+        
+        .hero-section {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 120px 48px 80px;
+        }
+        
+        .hero-label {
+            display: inline-block;
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 6px;
+            color: var(--neon-blue);
+            margin-bottom: 24px;
+            padding: 8px 24px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(0, 243, 255, 0.05);
+        }
+        
+        .hero-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase; letter-spacing: 8px;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 16px; letter-spacing: 2px;
+            font-weight: 300; max-width: 600px;
+            line-height: 1.8;
+        }
+        
+        .stats-bar {
+            display: flex; gap: 64px;
+            margin-top: 80px;
+            padding: 32px 64px;
+            background: rgba(10, 10, 20, 0.6);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 60px;
+            backdrop-filter: blur(20px);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px; font-weight: 900;
+            color: var(--neon-blue);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+        
+        .stat-label {
+            font-size: 10px; text-transform: uppercase;
+            letter-spacing: 2px; color: rgba(255,255,255,0.4);
+            margin-top: 4px;
+        }
+        
+        .container {
+            max-width: 1200px; margin: 0 auto;
+            padding: 40px 48px 60px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .page-label {
+            display: inline-block;
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 6px;
+            color: var(--neon-blue);
+            margin-bottom: 16px;
+            padding: 6px 16px;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(0, 243, 255, 0.05);
+        }
+        
+        .page-header h2 {
+            font-size: 40px; font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase; letter-spacing: 4px;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px; letter-spacing: 2px;
+        }
+        
+        .news-list {
+            display: flex; flex-direction: column; gap: 24px;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.15);
+            border-radius: 8px;
+            padding: 36px 40px;
+            transition: all 0.4s;
+            position: relative; overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 2px; height: 0;
+            background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .news-card:hover::before { height: 100%; }
+        
+        .news-card:hover {
+            transform: translateX(8px);
+            border-color: rgba(0, 243, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.15);
+        }
+        
+        .news-header {
+            display: flex; justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .news-date {
+            font-size: 11px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 3px;
+            color: var(--neon-blue);
+        }
+        
+        .news-tags { display: flex; gap: 8px; }
+        
+        .tag {
+            background: rgba(0, 243, 255, 0.08);
+            color: var(--neon-blue);
+            padding: 4px 14px; border-radius: 3px;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+        }
+        
+        .news-title {
+            font-size: 22px; font-weight: 700;
+            margin-bottom: 14px; color: #fff;
+            line-height: 1.5; letter-spacing: 0.5px;
+        }
+        
+        .news-title a {
+            color: #fff; text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .news-title a:hover { color: var(--neon-blue); }
+        
+        .news-content {
+            color: rgba(255,255,255,0.6);
+            line-height: 2; font-size: 15px;
+            margin-bottom: 24px; font-weight: 300;
+        }
+        
+        .news-footer {
+            display: flex; justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .read-link {
+            color: var(--neon-blue); text-decoration: none;
+            font-size: 11px; font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase; letter-spacing: 2px;
+            padding: 12px 24px;
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-radius: 4px;
+        }
+        
+        .read-link:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: rgba(0,0,0,0.8);
+            border-top: 1px solid rgba(0, 243, 255, 0.15);
+            padding: 64px 48px; text-align: center;
+            margin-top: 80px;
+        }
+        
+        .footer p {
+            color: rgba(255,255,255,0.4);
+            font-size: 12px; text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .footer-link {
+            color: var(--neon-blue); text-decoration: none;
+            font-size: 12px; text-transform: uppercase;
+            letter-spacing: 2px; transition: all 0.3s;
+        }
+        
+        .footer-link:hover { color: var(--neon-purple); }
+        
+        @media (max-width: 768px) {
+            .header { padding: 20px 24px; flex-direction: column; gap: 16px; }
+            .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+            .container { padding: 40px 24px 40px; }
+            .hero-section { padding: 120px 24px 60px; }
+            .stats-bar { gap: 32px; padding: 24px 32px; flex-wrap: wrap; justify-content: center; }
+            .news-card { padding: 28px; }
+            .news-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <header class="header">
+        <a href="/" class="logo">NEXUS</a>
+        <nav class="nav-links">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/categories/">分类</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">/</span>
+            <span class="current">探索前沿科技</span>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-label">🚀 Future Tech Space</div>
+        <h1 class="hero-title">NEXUS</h1>
+        <p class="hero-subtitle">探索前沿科技 · 分享深度见解 · 连接未来世界<br>AI · 大模型 · 云原生 · Web开发</p>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Articles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Resources</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Possibilities</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="page-header">
+            <div class="page-label">Latest Articles</div>
+            <h2>技术文章</h2>
+            <p>最新技术文章 · 深度解析 · 实战分享</p>
+        </div>
+
+        <div class="news-list">
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.27</span>
+                    <div class="news-tags"><span class="tag">AI</span><span class="tag">Agent</span><span class="tag">LLM</span></div>
+                </div>
+                <h2 class="news-title"><a href="/article/2026-ai-agent-multi-agent-systems/">2026年AI Agent爆发：从单Agent到多智能体协作</a></h2>
+                <p class="news-content">
+                    2026年，AI Agent 领域迎来爆发式增长。本文基于当前热门项目，深入分析多智能体协作的技术原理与实践方法，涵盖 Deer-Flow、oh-my-claudecode、AgentScope 等明星项目...
+                </p>
+                <div class="news-footer">
+                    <span class="read-link" href="/article/2026-ai-agent-multi-agent-systems/">阅读原文 →</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.26</span>
+                    <div class="news-tags"><span class="tag">AI</span><span class="tag">Open Source</span><span class="tag">Agent</span></div>
+                </div>
+                <h2 class="news-title"><a href="/article/2026-deer-flow-long-context-agent/">超长上下文模型新突破：Deer-Flow深度解析</a></h2>
+                <p class="news-content">
+                    Deer-Flow 是字节跳动开源的长时自主 Agent 系统，能够处理需要数分钟到数小时才能完成的复杂研究任务。凭借 49,302 的星数，已成为 2026 年最受关注的开源 AI 项目之一...
+                </p>
+                <div class="news-footer">
+                    <span class="read-link" href="/article/2026-deer-flow-long-context-agent/">阅读原文 →</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.25</span>
+                    <div class="news-tags"><span class="tag">AI</span><span class="tag">Whisper</span><span class="tag">Voice</span></div>
+                </div>
+                <h2 class="news-title"><a href="/article/2026-fast-whisper-voice-ai/">语音AI再升级：Insanely Fast Whisper性能实测</a></h2>
+                <p class="news-content">
+                    Insanely Fast Whisper 将 OpenAI Whisper 性能提升 30 倍，实现实时语音转写。本文深度解析其技术原理：INT8量化、Flash Attention 2、GPU加速等技术如何协同实现极速识别...
+                </p>
+                <div class="news-footer">
+                    <span class="read-link" href="/article/2026-fast-whisper-voice-ai/">阅读原文 →</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.24</span>
+                    <div class="news-tags"><span class="tag">AI</span><span class="tag">Research</span><span class="tag">Tools</span></div>
+                </div>
+                <h2 class="news-title"><a href="/article/2026-ai-research-assistant/">AI驱动的研究助手：让AI帮你做深度调研</a></h2>
+                <p class="news-content">
+                    last30days-skill 能够自动在 Reddit、X、YouTube、Hacker News 等平台收集任意话题的信息，并综合提炼出有深度的研究报告。本文介绍如何用 AI 做高效技术调研...
+                </p>
+                <div class="news-footer">
+                    <span class="read-link" href="/article/2026-ai-research-assistant/">阅读原文 →</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-header">
+                    <span class="news-date">2026.03.23</span>
+                    <div class="news-tags"><span class="tag">AI</span><span class="tag">Claude</span><span class="tag">DevOps</span></div>
+                </div>
+                <h2 class="news-title"><a href="/article/2026-multi-agent-devops/">多智能体系统实战：用Claude Code团队协作开发</a></h2>
+                <p class="news-content">
+                    oh-my-claudecode 实现了「团队协作」式的软件开发流程，让 AI Agent 像人类团队一样协作开发。本文实战演示如何用多 Agent 团队完成复杂项目开发...
+                </p>
+                <div class="news-footer">
+                    <span class="read-link" href="/article/2026-multi-agent-devops/">阅读原文 →</span>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 NEXUS — All Rights Reserved</p>
+        <p>Powered by <a href="/" class="footer-link">Hexo</a> + <a href="/" class="footer-link">Butterfly</a> + <a href="/news/" class="footer-link">Three.js</a></p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+        });
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 1500;
+        const posArray = new Float32Array(particlesCount * 3);
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x00f3ff,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        camera.position.z = 5;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+            const elapsedTime = clock.getElapsedTime();
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = mouseY * 0.5;
+            particlesMesh.rotation.y += mouseX * 0.5;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">NEXUS</div><div class="author-info-description">技术博客，关注AI、大模型、云原生、Web开发等领域</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/article/hello-world/" title="Hello World">Hello World</a><time datetime="2026-03-27T09:46:19.384Z" title="发表于 2026-03-27 17:46:19">2026-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/2026-ai-agent-multi-agent-systems/" title="2026年AI Agent爆发：从单Agent到多智能体协作"><img src="https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?w=1200&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2026年AI Agent爆发：从单Agent到多智能体协作"/></a><div class="content"><a class="title" href="/article/2026-ai-agent-multi-agent-systems/" title="2026年AI Agent爆发：从单Agent到多智能体协作">2026年AI Agent爆发：从单Agent到多智能体协作</a><time datetime="2026-03-27T02:00:00.000Z" title="发表于 2026-03-27 10:00:00">2026-03-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/2026-deer-flow-long-context-agent/" title="超长上下文模型新突破：Deer-Flow深度解析"><img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?w=1200&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="超长上下文模型新突破：Deer-Flow深度解析"/></a><div class="content"><a class="title" href="/article/2026-deer-flow-long-context-agent/" title="超长上下文模型新突破：Deer-Flow深度解析">超长上下文模型新突破：Deer-Flow深度解析</a><time datetime="2026-03-26T02:00:00.000Z" title="发表于 2026-03-26 10:00:00">2026-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/2026-fast-whisper-voice-ai/" title="语音AI再升级：Insanely Fast Whisper性能实测"><img src="https://images.pexels.com/photos/8386450/pexels-photo-8386450.jpeg?w=1200&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="语音AI再升级：Insanely Fast Whisper性能实测"/></a><div class="content"><a class="title" href="/article/2026-fast-whisper-voice-ai/" title="语音AI再升级：Insanely Fast Whisper性能实测">语音AI再升级：Insanely Fast Whisper性能实测</a><time datetime="2026-03-25T02:00:00.000Z" title="发表于 2026-03-25 10:00:00">2026-03-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/article/original-site/" title="Future Tech Space">Future Tech Space</a><time datetime="2026-03-25T02:00:00.000Z" title="发表于 2026-03-25 10:00:00">2026-03-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">5</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E4%BF%A1%E6%81%AF%E8%81%9A%E5%90%88/" style="font-size: 1.1em; color: #999">信息聚合</a> <a href="/tags/AI%E7%A0%94%E7%A9%B6%E5%8A%A9%E6%89%8B/" style="font-size: 1.1em; color: #999">AI研究助手</a> <a href="/tags/%E8%B0%83%E7%A0%94%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">调研工具</a> <a href="/tags/AI-Agent/" style="font-size: 1.5em; color: #99a9bf">AI Agent</a> <a href="/tags/%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">语音识别</a> <a href="/tags/Claude-Code/" style="font-size: 1.1em; color: #999">Claude Code</a> <a href="/tags/%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87/" style="font-size: 1.1em; color: #999">长上下文</a> <a href="/tags/DevOps/" style="font-size: 1.1em; color: #999">DevOps</a> <a href="/tags/%E5%BC%80%E6%BA%90/" style="font-size: 1.5em; color: #99a9bf">开源</a> <a href="/tags/%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/" style="font-size: 1.1em; color: #999">开发效率</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">性能优化</a> <a href="/tags/%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C/" style="font-size: 1.1em; color: #999">团队协作</a> <a href="/tags/%E5%A4%9A%E6%99%BA%E8%83%BD%E4%BD%93/" style="font-size: 1.5em; color: #99a9bf">多智能体</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">深度学习</a> <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.1em; color: #999">大模型</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E7%A0%94%E7%A9%B6/" style="font-size: 1.1em; color: #999">深度研究</a> <a href="/tags/Whisper/" style="font-size: 1.1em; color: #999">Whisper</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">7</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-03-30T05:20:03.778Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By NEXUS</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
