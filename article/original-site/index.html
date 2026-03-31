@@ -42,8 +42,22 @@
         </div>
     </section>
 
-    <article class="article-content-wrapper">
-        <div class="article-content">
+        <article class="article-content-wrapper">
+        <div class="article-layout">
+            <div class="article-toc">
+                <div class="toc-card">
+                    <div class="toc-card__title">目录</div>
+                    <nav class="toc-list">
+                        <a href="#Quick-Start" class="toc-link" data-level="2">Quick Start</a>
+                        <a href="#Create-a-new-post" class="toc-link" data-level="3">Create a new post</a>
+                        <a href="#Run-server" class="toc-link" data-level="3">Run server</a>
+                        <a href="#Generate-static-files" class="toc-link" data-level="3">Generate static files</a>
+                        <a href="#Deploy-to-remote-sites" class="toc-link" data-level="3">Deploy to remote sites</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="article-main">
+                <div class="article-content">
             <h2 id="legacy-purpose">为什么保留这篇旧稿</h2>
             <p>这不是一篇常规技术文章，而是 NEXUS 最早期站点原型的迁移存档。原页面来自一套完全不同的主题结构，样式、交互与当前站点已经脱节，继续保留原状只会让用户在浏览过程中突然跳进另一个产品。</p>
             <p>现在把它收进统一的文章模板里，目的很明确：保留历史痕迹，但不再牺牲整体体验一致性。</p>
@@ -79,8 +93,9 @@
                 <li>把关于页、友情链接页和内容导航继续打磨成更完整的站点体系。</li>
             </ol>
         </div>
+            </div>
+        </div>
     </article>
-
     <div id="giscus-thread"></div>
 
     <footer class="footer">
@@ -100,7 +115,7 @@
         var r = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         r.setSize(window.innerWidth, window.innerHeight);
         c.appendChild(r.domElement);
-        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.5 });
+        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.2 });
         var ps = [];
         for (var i = 0; i < 50; i++) {
             var pm = new THREE.Mesh(g, m.clone());
@@ -111,7 +126,7 @@
             ps.push(pm);
             s.add(pm);
         }
-        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.08 });
+        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.03 });
         for (var j = 0; j < ps.length; j++) {
             for (var k = j + 1; k < ps.length; k++) {
                 if (ps[j].position.distanceTo(ps[k].position) < 20) {

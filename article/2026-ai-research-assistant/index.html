@@ -37,8 +37,22 @@
             <div class="article-tags"><span class="article-tag">AI</span></div>
         </div>
     </section>
-    <article class="article-content-wrapper">
-        <div class="article-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>last30days-skill 是一个创新的 AI Agent 技能，能够自动在 Reddit、X、YouTube、Hacker News、Polymarket 等平台收集任意话题的信息，并综合提炼出有深度的研究报告。</p>
+        <article class="article-content-wrapper">
+        <div class="article-layout">
+            <div class="article-toc">
+                <div class="toc-card">
+                    <div class="toc-card__title">目录</div>
+                    <nav class="toc-list">
+                        <a href="#Quick-Start" class="toc-link" data-level="2">Quick Start</a>
+                        <a href="#Create-a-new-post" class="toc-link" data-level="3">Create a new post</a>
+                        <a href="#Run-server" class="toc-link" data-level="3">Run server</a>
+                        <a href="#Generate-static-files" class="toc-link" data-level="3">Generate static files</a>
+                        <a href="#Deploy-to-remote-sites" class="toc-link" data-level="3">Deploy to remote sites</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="article-main">
+                <div class="article-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>last30days-skill 是一个创新的 AI Agent 技能，能够自动在 Reddit、X、YouTube、Hacker News、Polymarket 等平台收集任意话题的信息，并综合提炼出有深度的研究报告。</p>
 <span id="more"></span>
 
 <h2 id="一、项目概述"><a href="#一、项目概述" class="headerlink" title="一、项目概述"></a>一、项目概述</h2><blockquote>
@@ -126,6 +140,8 @@
 <hr>
 <p><em>阅读时长：约6分钟 | 关键词：AI研究助手、信息聚合、调研工具、last30days</em></p>
 </div>
+            </div>
+        </div>
     </article>
     <div id="giscus-thread"></div>
     <footer class="footer">
@@ -144,7 +160,7 @@
         var r = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         r.setSize(window.innerWidth, window.innerHeight);
         c.appendChild(r.domElement);
-        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.5 });
+        var g = new THREE.SphereGeometry(0.3, 16, 16), m = new THREE.MeshBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.2 });
         var ps = [];
         for (var i = 0; i < 50; i++) {
             var pm = new THREE.Mesh(g, m.clone());
@@ -155,7 +171,7 @@
             ps.push(pm);
             s.add(pm);
         }
-        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.08 });
+        var ls = [], lm = new THREE.LineBasicMaterial({ color: 0x3B82F6, transparent: true, opacity: 0.03 });
         for (var i = 0; i < ps.length; i++) {
             for (var j = i + 1; j < ps.length; j++) {
                 if (ps[i].position.distanceTo(ps[j].position) < 20) {

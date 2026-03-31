@@ -696,16 +696,22 @@ body.mobile-nav-open .mobile-nav-drawer {
   background: #fff;
 }
 
+/* Article Page — Centered Double-Column Layout */
 .article-content-wrapper {
   position: relative;
   z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
 }
 
 .article-layout {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 48px;
   align-items: start;
+  max-width: 1088px;  /* 260 + 48 + 780 */
+  margin: 0 auto;
 }
 
 .article-toc {
@@ -753,9 +759,28 @@ body.mobile-nav-open .mobile-nav-drawer {
   background: rgba(37, 99, 235, 0.07);
 }
 
+/* 正文区 — max 780px, 左对齐 */
 .article-main {
   display: grid;
   gap: 24px;
+  max-width: 780px;
+}
+
+/* 文章正文左对齐阅读 */
+.article-content {
+  font-size: 17px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content p,
+.article-content ul,
+.article-content ol,
+.article-content blockquote {
+  text-align: left;
 }
 
 .article-summary {
@@ -791,6 +816,24 @@ body.mobile-nav-open .mobile-nav-drawer {
   color: var(--accent, var(--nexus-accent-strong));
   border-color: rgba(37, 99, 235, 0.24);
   transform: translateY(-1px);
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+  .article-toc {
+    display: none;
+  }
+  .article-main {
+    max-width: 100%;
+  }
+  .article-content-wrapper {
+    padding: 60px 24px 80px;
+  }
+}
+
 }
 
 .related-section {
