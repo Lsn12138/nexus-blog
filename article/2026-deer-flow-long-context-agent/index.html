@@ -9,20 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/article-style.css">
     <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script>
-    <script>
-    var gitalk = new Gitalk({
-        clientID: 'Ov23li9QcQ2YvL4U0L16',
-        clientSecret: '9596df025070e490613226b6cee3059b06625c8',
-        repo: 'lsn-org.github.io',
-        owner: 'lsn-org',
-        admin: ['lsn-org'],
-        id: location.pathname,
-        distractionFreeMode: true
-    });
-    gitalk.render('gitalk-container');
-    </script>
+    
+    
 </head>
 <body>
     <div id="canvas-bg"></div>
@@ -153,10 +141,7 @@
 <p><em>阅读时长：约7分钟 | 关键词：Deer-Flow、长上下文、深度研究、AI Agent、开源</em></p>
 </div>
     </article>
-    <div class="comments-section">
-        <h2 class="comments-title">💬 评论</h2>
-        <div id="gitalk-container"></div>
-    </div>
+    <div id="giscus-thread"></div>
     <footer class="footer">
         <p>© 2026 NEXUS — All Rights Reserved</p>
         <p><a href="/">← 返回首页</a></p>
@@ -213,5 +198,21 @@
         if (h) { if (window.scrollY > 50) h.classList.add('scrolled'); else h.classList.remove('scrolled'); }
     });
     </script>
+<script src="https://giscus.app/client.js"
+        data-repo="Lsn12138/nexus-blog"
+        data-repo-id="R_kgDOR0f8dw"
+        data-category="General"
+        data-category-id="DIC_kwDOR0f8d84C5mVo"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 </body>
 </html>
