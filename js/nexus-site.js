@@ -10,7 +10,13 @@
     searchQuery: "",
     searchCategory: "all",
     searchYear: "all",
-    searchTag: ""
+    searchTag: "",
+    searchScrollY: 0
+  };
+  const motionState = {
+    nodes: [],
+    scheduled: false,
+    bound: false
   };
 
   applyTheme(getPreferredTheme(), false);
@@ -26,6 +32,8 @@
     if (pageKey === "archives") renderArchivesPage();
     if (pageKey === "about") renderAboutPage();
     if (pageKey === "article") enhanceArticlePage();
+    markProgressiveNodes();
+    initProgressiveMotion();
   }
 
   function normalizeArticle(article) {
@@ -65,12 +73,56 @@
   function detectPage() {
     const pathname = normalizePath(window.location.pathname);
     if (pathname === "/") return "home";
-    if (pathname === "/tags/") return "tags";
-    if (pathname === "/categories/") return "categories";
-    if (pathname === "/archives/") return "archives";
+    if (pathname.startsWith("/tags/")) return "tags";
+    if (pathname.startsWith("/categories/")) return "categories";
+    if (pathname.startsWith("/archives/")) return "archives";
     if (pathname === "/about/") return "about";
     if (pathname.startsWith("/article/")) return "article";
     return "default";
+  }
+
+  function getPathSegments(pathname) {
+    return normalizePath(pathname).split("/").filter(Boolean);
+  }
+
+  function slugifyValue(value) {
+    return String(value || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w\u4e00-\u9fff-]+/g, "")
+      .replace(/-+/g, "-");
+  }
+
+  function resolveFilterValue(rawValue, values) {
+    if (!rawValue) return "";
+    const decoded = decodeURIComponent(rawValue);
+    if (values.includes(decoded)) return decoded;
+    const matched = values.find((value) => slugifyValue(value) === slugifyValue(decoded));
+    return matched || decoded;
+  }
+
+  function getSelectedTag(tagCounts) {
+    const queryValue = new URLSearchParams(window.location.search).get("tag") || "";
+    const pathValue = getPathSegments(window.location.pathname)[1] || "";
+    return resolveFilterValue(queryValue || pathValue, [...tagCounts.keys()]);
+  }
+
+  function getSelectedCategory(categoryCounts) {
+    const queryValue = new URLSearchParams(window.location.search).get("category") || "";
+    const pathValue = getPathSegments(window.location.pathname)[1] || "";
+    return resolveFilterValue(queryValue || pathValue, [...categoryCounts.keys()]);
+  }
+
+  function getArchiveFilters() {
+    const params = new URLSearchParams(window.location.search);
+    const segments = getPathSegments(window.location.pathname);
+    const year = params.get("year") || (segments[0] === "archives" ? segments[1] || "" : "");
+    const month = params.get("month") || (segments[0] === "archives" ? segments[2] || "" : "");
+    return {
+      year,
+      month
+    };
   }
 
   function initTheme() {
@@ -355,19 +407,64 @@
       state.searchQuery = event.target.value.trim();
       renderSearchResults(modal);
     });
+
+    bindSearchWheelScroll(modal.querySelector(".search-main"));
+    bindSearchWheelScroll(modal.querySelector(".search-sidebar"));
+  }
+
+  function bindSearchWheelScroll(container) {
+    if (!container) return;
+    container.addEventListener(
+      "wheel",
+      (event) => {
+        if (!state.searchOpen) return;
+        const canScroll = container.scrollHeight > container.clientHeight + 1;
+        if (!canScroll) return;
+        container.scrollTop += event.deltaY;
+        event.preventDefault();
+      },
+      { passive: false }
+    );
   }
 
   function openSearch(modal) {
+    if (state.searchOpen) return;
     state.searchOpen = true;
+    lockPageScroll();
     modal.classList.add("is-open");
+    document.body.classList.add("search-open");
+    document.documentElement.classList.add("search-open");
     document.body.classList.remove("mobile-nav-open");
     const input = modal.querySelector(".search-input");
     window.setTimeout(() => input?.focus(), 30);
   }
 
   function closeSearch() {
+    if (!state.searchOpen) return;
     state.searchOpen = false;
     document.querySelector(".search-modal")?.classList.remove("is-open");
+    document.body.classList.remove("search-open");
+    document.documentElement.classList.remove("search-open");
+    unlockPageScroll();
+  }
+
+  function lockPageScroll() {
+    state.searchScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${state.searchScrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+
+  function unlockPageScroll() {
+    const restoreY = state.searchScrollY || 0;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, restoreY);
   }
 
   function renderSearchFilters(modal) {
@@ -499,29 +596,54 @@
   }
 
   function enhanceHome() {
-    const hero = document.querySelector(".hero");
-    if (hero && !hero.querySelector(".hero-search-trigger")) {
-      const trigger = document.createElement("button");
-      trigger.className = "header-action hero-search-trigger";
-      trigger.type = "button";
-      trigger.setAttribute("data-search-trigger", "hero");
-      trigger.innerHTML = `<span class="header-action-icon">⌕</span>搜索文章 / 标签 / 分类`;
-      hero.appendChild(trigger);
-      trigger.addEventListener("click", () => openSearch(document.querySelector(".search-modal")));
+    const isAppleHome = document.body.classList.contains("home-page");
+    mountHomeSearchTrigger(isAppleHome);
+    syncHomeStats();
+
+    if (isAppleHome) {
+      renderHomeShowcaseSections();
+      return;
     }
 
-    syncHomeStats();
     replaceLatestSection();
     injectFeaturedSection();
   }
 
+  function mountHomeSearchTrigger(isAppleHome) {
+    const target = isAppleHome
+      ? document.querySelector(".home-hero-actions")
+      : document.querySelector(".hero");
+    if (!target || target.querySelector(".hero-search-trigger")) return;
+
+    const trigger = document.createElement("button");
+    trigger.className = isAppleHome ? "btn btn-secondary hero-search-trigger" : "header-action hero-search-trigger";
+    trigger.type = "button";
+    trigger.setAttribute("data-search-trigger", "hero");
+    trigger.setAttribute("aria-label", "搜索站内内容");
+    trigger.innerHTML = isAppleHome
+      ? "搜索内容"
+      : `<span class="header-action-icon">⌕</span>搜索文章 / 标签 / 分类`;
+    target.appendChild(trigger);
+    trigger.addEventListener("click", () => openSearch(document.querySelector(".search-modal")));
+  }
+
   function syncHomeStats() {
-    const statItems = document.querySelectorAll(".stats .stat-item");
     const values = [
-      { value: featuredArticles.length, label: "技术文章" },
-      { value: countBy(displayArticles.flatMap((article) => article.tags)).size, label: "主题标签" },
-      { value: countBy(displayArticles, (article) => article.category).size, label: "内容分类" }
+      { value: displayArticles.length, label: "文章" },
+      { value: countBy(displayArticles.flatMap((article) => article.tags)).size, label: "主题" },
+      { value: countBy(displayArticles, (article) => article.category).size, label: "分类" }
     ];
+
+    const homeStats = document.querySelectorAll(".home-stat");
+    homeStats.forEach((item, index) => {
+      const valueNode = item.querySelector(".home-stat__value");
+      const labelNode = item.querySelector(".home-stat__label");
+      if (!values[index] || !valueNode || !labelNode) return;
+      valueNode.textContent = String(values[index].value);
+      labelNode.textContent = values[index].label;
+    });
+
+    const statItems = document.querySelectorAll(".stats .stat-item");
     statItems.forEach((item, index) => {
       const number = item.querySelector(".stat-number");
       const label = item.querySelector(".stat-label");
@@ -530,6 +652,119 @@
       number.textContent = "0";
       label.textContent = values[index].label;
     });
+  }
+
+  function renderHomeShowcaseSections() {
+    const latestArticles = [...displayArticles].sort(sortByDateDesc).slice(0, 2);
+    const recommendedArticles = featuredArticles
+      .filter((article) => !latestArticles.some((item) => item.url === article.url))
+      .map((article) => ({
+        ...article,
+        score: article.tags.length * 2 + (article.category === "AI" ? 1 : 0)
+      }))
+      .sort((left, right) => right.score - left.score || sortByDateDesc(left, right))
+      .slice(0, 2);
+
+    renderHomeShowcaseSlot("latest", latestArticles);
+    renderHomeShowcaseSlot("recommended", recommendedArticles.length ? recommendedArticles : latestArticles);
+  }
+
+  function renderHomeShowcaseSlot(slot, articles) {
+    const container = document.querySelector(`[data-home-slot="${slot}"]`);
+    if (!container) return;
+    container.innerHTML = articles.map(buildHomeShowcaseCard).join("");
+  }
+
+  function buildHomeShowcaseCard(article) {
+    const labels = article.tags.length ? article.tags.slice(0, 3) : [article.category];
+    return `
+      <a class="home-showcase home-reveal" href="${article.url}">
+        <div class="home-showcase__inner">
+          <div class="home-showcase__media">
+            <img src="${article.cover}" alt="${escapeHtml(article.title)}" loading="lazy" />
+          </div>
+          <div class="home-showcase__content">
+            <div class="home-showcase__meta">
+              <span>${escapeHtml(article.date || "未标注日期")}</span>
+              <span>${escapeHtml(article.category)}</span>
+              <span>${article.readingTime} 分钟阅读</span>
+            </div>
+            <h3 class="home-showcase__title">${escapeHtml(article.title)}</h3>
+            <p class="home-showcase__excerpt">${escapeHtml(article.excerpt)}</p>
+            <div class="home-showcase__tags">
+              ${labels.map((label) => `<span class="home-showcase__tag">${escapeHtml(label)}</span>`).join("")}
+            </div>
+            <span class="home-showcase__link">查看文章</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  function markProgressiveNodes(root) {
+    const scope = root || document;
+    const selectors = [
+      ".panel-header",
+      ".stat-card",
+      ".archive-stat-card",
+      ".category-card",
+      ".content-card",
+      ".feature-card",
+      ".related-card",
+      ".timeline-card",
+      ".link-card",
+      ".resource-card",
+      ".story-card",
+      ".toc-card",
+      ".action-card",
+      ".article-hero__meta",
+      ".article-tags"
+    ];
+
+    scope.querySelectorAll(selectors.join(",")).forEach((node, index) => {
+      node.classList.add("progressive-stage");
+      node.style.setProperty("--progressive-order", String(index % 6));
+    });
+  }
+
+  function initProgressiveMotion() {
+    motionState.nodes = [...document.querySelectorAll(".home-reveal, .progressive-stage")];
+    if (!motionState.nodes.length) return;
+
+    if (!motionState.bound) {
+      window.addEventListener("scroll", queueProgressiveMotion, { passive: true });
+      window.addEventListener("resize", queueProgressiveMotion, { passive: true });
+      motionState.bound = true;
+    }
+
+    queueProgressiveMotion();
+  }
+
+  function queueProgressiveMotion() {
+    if (motionState.scheduled) return;
+    motionState.scheduled = true;
+    window.requestAnimationFrame(() => {
+      motionState.scheduled = false;
+      updateProgressiveMotion();
+    });
+  }
+
+  function updateProgressiveMotion() {
+    const viewportHeight = Math.max(window.innerHeight || 0, 1);
+    motionState.nodes = motionState.nodes.filter((node) => node && node.isConnected);
+
+    motionState.nodes.forEach((node) => {
+      const rect = node.getBoundingClientRect();
+      const start = viewportHeight * 0.96;
+      const end = viewportHeight * 0.2;
+      const progress = clamp((start - rect.top) / (start - end), 0, 1);
+      node.style.setProperty("--reveal-progress", progress.toFixed(3));
+      node.classList.toggle("is-visible", progress > 0.56);
+    });
+  }
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
   }
 
   function replaceLatestSection() {
@@ -585,7 +820,7 @@
 
   function renderTagsPage() {
     const tagCounts = countBy(displayArticles.flatMap((article) => article.tags));
-    const selectedTag = new URLSearchParams(window.location.search).get("tag") || "";
+    const selectedTag = getSelectedTag(tagCounts);
     const matchedArticles = selectedTag
       ? displayArticles.filter((article) => article.tags.includes(selectedTag)).sort(sortByDateDesc)
       : featuredArticles;
@@ -607,21 +842,24 @@
           <p>点击标签即可在当前页直接筛选，支持从文章页回跳到标签聚合页。</p>
         </div>
         <div class="stat-strip">
-          <div class="stat-card">
+          <a class="stat-card stat-card--link" href="/tags/">
             <span class="stat-card__value">${tagCounts.size}</span>
             <span class="stat-card__label">标签总数</span>
             <span class="stat-card__hint">当前站点已覆盖 ${tagCounts.size} 个技术主题。</span>
-          </div>
-          <div class="stat-card">
+            <span class="stat-card__cta">浏览标签</span>
+          </a>
+          <a class="stat-card stat-card--link" href="/archives/">
             <span class="stat-card__value">${featuredArticles.length}</span>
             <span class="stat-card__label">可浏览文章</span>
             <span class="stat-card__hint">默认展示已整理过摘要和标签的主要文章。</span>
-          </div>
-          <div class="stat-card">
+            <span class="stat-card__cta">查看文章</span>
+          </a>
+          <a class="stat-card stat-card--link" href="${selectedTag ? `/tags/?tag=${encodeURIComponent(selectedTag)}` : "/tags/"}">
             <span class="stat-card__value">${selectedTag ? tagCounts.get(selectedTag) || 0 : "All"}</span>
             <span class="stat-card__label">${selectedTag ? `${selectedTag} 相关文章` : "当前筛选"}</span>
             <span class="stat-card__hint">${selectedTag ? "筛选已同步到链接参数，可直接分享。": "点击任意标签即可切换聚合视图。"}</span>
-          </div>
+            <span class="stat-card__cta">${selectedTag ? "查看当前标签" : "进入标签导航"}</span>
+          </a>
         </div>
       </section>
       <section class="panel-section panel-section--compact">
@@ -659,7 +897,7 @@
 
   function renderCategoriesPage() {
     const categoryCounts = countBy(displayArticles, (article) => article.category);
-    const selectedCategory = new URLSearchParams(window.location.search).get("category") || "";
+    const selectedCategory = getSelectedCategory(categoryCounts);
     const matchedArticles = selectedCategory
       ? displayArticles.filter((article) => article.category === selectedCategory).sort(sortByDateDesc)
       : [...displayArticles].sort(sortByDateDesc);
@@ -750,21 +988,24 @@
           </div>
           <div class="about-stack">
             <div class="stat-strip">
-              <div class="stat-card">
+              <a class="stat-card stat-card--link" href="/archives/">
                 <span class="stat-card__value">${featuredArticles.length}</span>
                 <span class="stat-card__label">重点文章</span>
                 <span class="stat-card__hint">已经整理摘要、标签与相关推荐的文章数量。</span>
-              </div>
-              <div class="stat-card">
+                <span class="stat-card__cta">查看归档</span>
+              </a>
+              <a class="stat-card stat-card--link" href="/tags/">
                 <span class="stat-card__value">${tagCount}</span>
                 <span class="stat-card__label">标签主题</span>
                 <span class="stat-card__hint">标签页与搜索会基于这些主题聚合内容。</span>
-              </div>
-              <div class="stat-card">
+                <span class="stat-card__cta">浏览标签</span>
+              </a>
+              <a class="stat-card stat-card--link" href="/categories/">
                 <span class="stat-card__value">${categoryCount}</span>
                 <span class="stat-card__label">分类目录</span>
                 <span class="stat-card__hint">包括主内容分类与历史存档分类。</span>
-              </div>
+                <span class="stat-card__cta">查看分类</span>
+              </a>
             </div>
             <div class="feature-grid">
               <div class="feature-card">
@@ -822,11 +1063,15 @@
   }
 
   function renderArchivesPage() {
-    const selectedYear = new URLSearchParams(window.location.search).get("year") || "";
+    const { year: selectedYear, month: selectedMonth } = getArchiveFilters();
     const yearCounts = countBy(displayArticles, (article) => article.year);
     const grouped = groupBy(
       displayArticles
-        .filter((article) => !selectedYear || article.year === selectedYear)
+        .filter((article) => {
+          if (selectedYear && article.year !== selectedYear) return false;
+          if (selectedMonth && article.date.slice(5, 7) !== selectedMonth) return false;
+          return true;
+        })
         .sort(sortByDateDesc),
       (article) => article.year
     );
@@ -835,7 +1080,9 @@
       label: "Archive Timeline",
       title: "文章",
       highlight: "归档",
-      subtitle: "归档页改成时间轴后，更适合快速浏览更新节奏，也为后续增加按年份筛选预留了结构。"
+      subtitle: selectedMonth
+        ? `当前正在查看 ${selectedYear || "全部年份"} 年 ${selectedMonth} 月的文章时间线。`
+        : "归档页改成时间轴后，更适合快速浏览更新节奏，也为后续增加按年份筛选预留了结构。"
     });
 
     replaceTopLevelSections(`
@@ -845,24 +1092,27 @@
             <div class="section-label">Archive Overview</div>
             <h2 class="section-title">时间轴浏览</h2>
           </div>
-          <p>按年份聚合文章，并保留未标注日期的历史内容，避免页面出现空白。</p>
+          <p>${selectedMonth ? `当前已按 ${selectedYear} 年 ${selectedMonth} 月过滤结果。` : "按年份聚合文章，并保留未标注日期的历史内容，避免页面出现空白。"}</p>
         </div>
         <div class="archive-stat-grid">
-          <div class="archive-stat-card">
+          <a class="archive-stat-card archive-stat-card--link" href="/archives/">
             <span class="archive-stat-card__value">${displayArticles.length}</span>
             <span class="archive-stat-card__label">文章总数</span>
             <span class="archive-stat-card__hint">已收录的所有文章都会出现在时间轴中。</span>
-          </div>
-          <div class="archive-stat-card">
+            <span class="archive-stat-card__cta">查看全部</span>
+          </a>
+          <a class="archive-stat-card archive-stat-card--link" href="${selectedYear ? `/archives/?year=${encodeURIComponent(selectedYear)}` : "/archives/"}">
             <span class="archive-stat-card__value">${yearCounts.size}</span>
             <span class="archive-stat-card__label">年份分组</span>
-            <span class="archive-stat-card__hint">当前可按年份切换归档视图。</span>
-          </div>
-          <div class="archive-stat-card">
+            <span class="archive-stat-card__hint">${selectedMonth ? "当前视图同时包含月份过滤。" : "当前可按年份切换归档视图。"}</span>
+            <span class="archive-stat-card__cta">${selectedYear ? "查看当前年份" : "切换年份"}</span>
+          </a>
+          <a class="archive-stat-card archive-stat-card--link" href="/#recommended">
             <span class="archive-stat-card__value">${featuredArticles.length}</span>
             <span class="archive-stat-card__label">重点内容</span>
             <span class="archive-stat-card__hint">已补充摘要和标签的文章会在首页与搜索中优先曝光。</span>
-          </div>
+            <span class="archive-stat-card__cta">回到首页精选</span>
+          </a>
         </div>
       </section>
       <section class="panel-section panel-section--compact">

@@ -3,594 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources - NEXUS</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --neon-blue: #00f3ff;
-            --neon-purple: #bc13fe;
-            --neon-pink: #ff006e;
-            --dark-bg: #0a0a0f;
-            --card-bg: rgba(10, 10, 20, 0.8);
-        }
-        
-        body {
-            font-family: 'SF Pro Display', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark-bg);
-            color: #ffffff;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-        
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 24px 48px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            z-index: 1000;
-            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 8px;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .breadcrumb a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-        }
-        
-        .breadcrumb a:hover { color: var(--neon-blue); }
-        
-        .breadcrumb .separator { color: rgba(255, 255, 255, 0.3); }
-        .breadcrumb .current { color: var(--neon-blue); font-weight: 600; }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 140px 48px 60px;
-        }
-        
-        .page-header {
-            text-align: center;
-            margin-bottom: 80px;
-            padding-bottom: 48px;
-            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        
-        .page-label {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--neon-blue);
-            margin-bottom: 20px;
-            padding: 8px 20px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 30px;
-            background: rgba(0, 243, 255, 0.05);
-        }
-        
-        .page-header h1 {
-            font-size: 56px;
-            font-weight: 900;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-        }
-        
-        .page-header p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 15px;
-            letter-spacing: 2px;
-            font-weight: 300;
-        }
-        
-        .file-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .file-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 243, 255, 0.15);
-            border-radius: 8px;
-            padding: 28px 36px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 32px;
-            transition: all 0.4s;
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .file-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.03), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-        
-        .file-card:hover::after { transform: translateX(100%); }
-        
-        .file-card:hover {
-            border-color: rgba(0, 243, 255, 0.4);
-            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.15);
-            transform: translateX(8px);
-        }
-        
-        .file-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            flex: 1;
-        }
-        
-        .file-icon {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 243, 255, 0.08);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-        }
-        
-        .file-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--neon-blue);
-            stroke-width: 1.5;
-            fill: none;
-        }
-        
-        .file-info {
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .file-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-        
-        .file-meta {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 12px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .file-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .tag {
-            background: rgba(0, 243, 255, 0.08);
-            color: var(--neon-blue);
-            padding: 4px 12px;
-            border-radius: 3px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        
-        .tag.hot {
-            background: rgba(255, 0, 110, 0.1);
-            color: var(--neon-pink);
-            border-color: rgba(255, 0, 110, 0.3);
-        }
-        
-        .download-btn {
-            flex-shrink: 0;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            color: #fff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .download-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .download-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.5);
-        }
-        
-        .download-btn svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
-        }
-        
-        .info-box {
-            margin-top: 60px;
-            padding: 32px;
-            background: rgba(0, 243, 255, 0.03);
-            border: 1px solid rgba(0, 243, 255, 0.15);
-            border-radius: 8px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-        
-        .info-box-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 243, 255, 0.08);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 50%;
-        }
-        
-        .info-box-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--neon-blue);
-            stroke-width: 1.5;
-            fill: none;
-        }
-        
-        .info-box p {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 2;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-        
-        .info-box code {
-            background: rgba(0, 243, 255, 0.08);
-            color: var(--neon-blue);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-family: 'SF Mono', 'Courier New', monospace;
-            font-size: 12px;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-        
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-            z-index: 9999;
-            width: 0%;
-        }
-        
-        .footer {
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid rgba(0, 243, 255, 0.15);
-            padding: 64px 48px;
-            text-align: center;
-            margin-top: 80px;
-        }
-        
-        .footer p {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        @media (max-width: 768px) {
-            .header { padding: 20px 24px; flex-direction: column; gap: 16px; }
-            .container { padding: 120px 24px 40px; }
-            .page-header h1 { font-size: 36px; }
-            .file-card { flex-direction: column; align-items: flex-start; }
-            .download-btn { width: 100%; justify-content: center; }
-        }
-    </style>
+    <title>资源下载 | NEXUS</title>
+    <meta name="description" content="NEXUS 的资源下载与资料集合。">
+    <link rel="stylesheet" href="/css/news-style.css">
+    <link rel="stylesheet" href="/css/nexus-enhancements.css">
+    <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
 </head>
 <body>
-    <div id="canvas-bg"></div>
-    <div id="canvas-container"></div>
-    <div class="scroll-progress" id="scroll-progress"></div>
-
     <header class="header" id="header">
         <a href="/" class="logo">NEXUS</a>
-        <div class="breadcrumb">
-            <a href="/">Home</a>
-            <span class="separator">/</span>
-            <span class="current">Resources</span>
-        </div>
+        <nav class="nav">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
     </header>
 
-    <main class="container">
-        <div class="page-header">
-            <div class="page-label">Download Center</div>
-            <h1>Resources</h1>
-            <p>实用工具 · 学习材料 · 技术文档</p>
+    <section class="hero">
+        <div class="section-label">Resources</div>
+        <h1 class="hero-title">资料<span>下载</span></h1>
+        <p class="hero-subtitle">把资源页从旧的赛博风格改回简洁的信息列表，只保留清晰的文件说明和下载入口。</p>
+    </section>
+
+    <section class="panel-section">
+        <div class="panel-header">
+            <div>
+                <div class="section-label">Download Center</div>
+                <h2>资源清单</h2>
+            </div>
+            <p>如果文件尚未上传，保留清楚的占位说明即可，不再用过重的视觉包装假装“丰富”。</p>
         </div>
-
-        <div class="file-list">
-            <div class="file-card">
-                <div class="file-left">
-                    <div class="file-icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-                    </div>
-                    <div class="file-info">
-                        <h3 class="file-name">AI 技术趋势 2026 报告</h3>
-                        <div class="file-meta">
-                            <span>PDF</span>
-                            <span>2.5 MB</span>
-                            <span>2026-03-25</span>
-                        </div>
-                        <div class="file-tags">
-                            <span class="tag hot">HOT</span>
-                            <span class="tag">AI</span>
-                            <span class="tag">Trending</span>
-                        </div>
-                    </div>
+        <div class="resource-grid">
+            <article class="resource-card">
+                <div class="resource-card__meta">PDF · 2.5 MB · 2026.03.25</div>
+                <h3 class="resource-card__title">AI 技术趋势 2026 报告</h3>
+                <p class="resource-card__desc">适合作为首页精选内容之外的补充资料入口，承接更偏资料化的内容形态。</p>
+                <div class="resource-card__actions">
+                    <a class="resource-card__button" href="/downloads/ai-trends-2026.pdf">下载文件</a>
                 </div>
-                <a href="/downloads/ai-trends-2026.pdf" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download
-                </a>
-            </div>
-
-            <div class="file-card">
-                <div class="file-left">
-                    <div class="file-icon">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <div class="file-info">
-                        <h3 class="file-name">HTTPS/SSL 配置完全指南</h3>
-                        <div class="file-meta">
-                            <span>PDF</span>
-                            <span>1.8 MB</span>
-                            <span>2026-03-24</span>
-                        </div>
-                        <div class="file-tags">
-                            <span class="tag">Security</span>
-                            <span class="tag">SSL</span>
-                        </div>
-                    </div>
+            </article>
+            <article class="resource-card">
+                <div class="resource-card__meta">PDF · 1.8 MB · 2026.03.24</div>
+                <h3 class="resource-card__title">HTTPS / SSL 配置指南</h3>
+                <p class="resource-card__desc">偏基础设施和安全实践，适合与云原生、站点部署类内容一起沉淀。</p>
+                <div class="resource-card__actions">
+                    <a class="resource-card__button" href="/downloads/https-guide.pdf">下载文件</a>
                 </div>
-                <a href="/downloads/https-guide.pdf" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download
-                </a>
-            </div>
-
-            <div class="file-card">
-                <div class="file-left">
-                    <div class="file-icon">
-                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                    <div class="file-info">
-                        <h3 class="file-name">Nginx 性能优化手册</h3>
-                        <div class="file-meta">
-                            <span>PDF</span>
-                            <span>3.2 MB</span>
-                            <span>2026-03-23</span>
-                        </div>
-                        <div class="file-tags">
-                            <span class="tag">Nginx</span>
-                            <span class="tag">Performance</span>
-                        </div>
-                    </div>
+            </article>
+            <article class="resource-card">
+                <div class="resource-card__meta">PDF · 3.2 MB · 2026.03.23</div>
+                <h3 class="resource-card__title">Nginx 性能优化手册</h3>
+                <p class="resource-card__desc">适合承接更偏运维和服务器优化的资料，不必混入首页主叙事。</p>
+                <div class="resource-card__actions">
+                    <a class="resource-card__button" href="/downloads/nginx-optimization.pdf">下载文件</a>
                 </div>
-                <a href="/downloads/nginx-optimization.pdf" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download
-                </a>
-            </div>
-
-            <div class="file-card">
-                <div class="file-left">
-                    <div class="file-icon">
-                        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </div>
-                    <div class="file-info">
-                        <h3 class="file-name">Web 开发学习路线图</h3>
-                        <div class="file-meta">
-                            <span>PDF</span>
-                            <span>4.1 MB</span>
-                            <span>2026-03-20</span>
-                        </div>
-                        <div class="file-tags">
-                            <span class="tag">Web Dev</span>
-                            <span class="tag">Frontend</span>
-                        </div>
-                    </div>
+            </article>
+            <article class="resource-card">
+                <div class="resource-card__meta">PDF · 4.1 MB · 2026.03.20</div>
+                <h3 class="resource-card__title">Web 开发学习路线图</h3>
+                <p class="resource-card__desc">更适合作为外链型学习辅助内容，保持轻量展示即可。</p>
+                <div class="resource-card__actions">
+                    <a class="resource-card__button" href="/downloads/web-dev-roadmap.pdf">下载文件</a>
                 </div>
-                <a href="/downloads/web-dev-roadmap.pdf" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download
-                </a>
-            </div>
-
-            <div class="file-card">
-                <div class="file-left">
-                    <div class="file-icon">
-                        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <div class="file-info">
-                        <h3 class="file-name">网络安全最佳实践</h3>
-                        <div class="file-meta">
-                            <span>PDF</span>
-                            <span>2.9 MB</span>
-                            <span>2026-03-18</span>
-                        </div>
-                        <div class="file-tags">
-                            <span class="tag">Security</span>
-                            <span class="tag">Best Practices</span>
-                        </div>
-                    </div>
-                </div>
-                <a href="/downloads/security-best-practices.pdf" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                    Download
-                </a>
-            </div>
+            </article>
         </div>
+    </section>
 
-        <div class="info-box">
-            <div class="info-box-icon">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            </div>
-            <p><strong>提示</strong></p>
-            <p>当前显示的是示例资源，下载链接指向的 PDF 文件尚未上传。</p>
-            <p>将 PDF 文件放入 <code>/home/admin/.openclaw/workspace/website/downloads/</code> 目录即可启用下载。</p>
+    <section class="panel-section panel-section--compact">
+        <div class="panel-empty">
+            当前下载链接仍指向站点内的静态文件。若文件尚未上传，建议优先补齐资源本体，再决定是否继续保留下载页。
         </div>
-    </main>
+    </section>
 
     <footer class="footer">
-        <p>© 2026 NEXUS — All Rights Reserved</p>
-        <p>Powered by Nginx + SSL + Three.js</p>
+        <p>© 2026 NEXUS. All rights reserved.</p>
     </footer>
 
-    <script>
-        window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scroll-progress').style.width = scrolled + '%';
-        });
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 1500;
-        const posArray = new Float32Array(particlesCount * 3);
-
-        for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 15;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            color: 0x00f3ff,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
-        camera.position.z = 5;
-
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth - 0.5;
-            mouseY = e.clientY / window.innerHeight - 0.5;
-        });
-
-        const clock = new THREE.Clock();
-        function animate() {
-            const elapsedTime = clock.getElapsedTime();
-            particlesMesh.rotation.y = elapsedTime * 0.05;
-            particlesMesh.rotation.x = mouseY * 0.5;
-            particlesMesh.rotation.y += mouseX * 0.5;
-            renderer.render(scene, camera);
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
+    <script src="/js/nexus-data.js"></script>
+    <script src="/js/nexus-site.js"></script>
 </body>
 </html>

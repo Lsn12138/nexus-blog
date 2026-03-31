@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章归档 | NEXUS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>归档 | NEXUS</title>
+    <meta name="description" content="按时间查看 NEXUS 的全部文章与更新节奏。">
     <link rel="stylesheet" href="/css/news-style.css">
     <link rel="stylesheet" href="/css/nexus-enhancements.css">
     <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div id="canvas-bg"></div>
-    <div class="scroll-progress" id="scroll-progress"></div>
-    
     <header class="header" id="header">
-        <a href="/" class="logo">NEX<span>U</span>S</a>
+        <a href="/" class="logo">NEXUS</a>
         <nav class="nav">
             <a href="/">首页</a>
             <a href="/archives/" class="active">归档</a>
@@ -27,98 +21,16 @@
     </header>
 
     <section class="hero">
-        <div class="section-label">Archive</div>
+        <div class="section-label">Archive Timeline</div>
         <h1 class="hero-title">文章<span>归档</span></h1>
-        <p class="hero-subtitle">共 7 篇文章</p>
-    </section>
-
-    <section class="section">
-        <div class="news-grid" >
-            <a href="/article/2026-ai-agent-multi-agent-systems/" class="news-card fade-up">
-                <img class="news-img" src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?w=600&q=80" alt="AI Agent">
-                <div class="news-body">
-                    <h3 class="news-title">2026年AI Agent爆发：从单Agent到多智能体协作</h3>
-                    <div class="news-date">2026.03.27</div>
-                </div>
-            </a>
-            <a href="/article/2026-deer-flow-long-context-agent/" class="news-card fade-up">
-                <img class="news-img" src="https://images.pexels.com/photos/8369932/pexels-photo-8369932.jpeg?w=600&q=80" alt="Deer-Flow">
-                <div class="news-body">
-                    <h3 class="news-title">超长上下文模型新突破：Deer-Flow深度解析</h3>
-                    <div class="news-date">2026.03.26</div>
-                </div>
-            </a>
-            <a href="/article/2026-fast-whisper-voice-ai/" class="news-card fade-up">
-                <img class="news-img" src="https://images.pexels.com/photos/8386450/pexels-photo-8386450.jpeg?w=600&q=80" alt="Whisper">
-                <div class="news-body">
-                    <h3 class="news-title">语音AI再升级：Insanely Fast Whisper性能实测</h3>
-                    <div class="news-date">2026.03.25</div>
-                </div>
-            </a>
-            <a href="/article/2026-ai-research-assistant/" class="news-card fade-up">
-                <img class="news-img" src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?w=600&q=80" alt="AI Research">
-                <div class="news-body">
-                    <h3 class="news-title">AI驱动的研究助手：让AI帮你做深度调研</h3>
-                    <div class="news-date">2026.03.24</div>
-                </div>
-            </a>
-            <a href="/article/2026-multi-agent-devops/" class="news-card fade-up">
-                <img class="news-img" src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?w=600&q=80" alt="DevOps">
-                <div class="news-body">
-                    <h3 class="news-title">多智能体系统实战：用Claude Code团队协作开发</h3>
-                    <div class="news-date">2026.03.23</div>
-                </div>
-            </a>
-        </div>
+        <p class="hero-subtitle">用更适合快速浏览的时间线方式，查看站点内容的更新节奏与历史沉淀。</p>
     </section>
 
     <footer class="footer">
-        <p>© 2026 NEXUS — All Rights Reserved</p>
-        <p><a href="/">Hexo</a></p>
+        <p>© 2026 NEXUS. All rights reserved.</p>
     </footer>
 
     <script src="/js/nexus-data.js"></script>
     <script src="/js/nexus-site.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-    (function(){
-        var c=document.getElementById('canvas-bg');
-        if(!c)return;
-        var s=new THREE.Scene(),ca=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-        ca.position.z=50;
-        var r=new THREE.WebGLRenderer({alpha:true,antialias:true});
-        r.setSize(window.innerWidth,window.innerHeight);
-        c.appendChild(r.domElement);
-        var g=new THREE.SphereGeometry(0.25,12,12),m=new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:0.4}),ps=[];
-        for(var i=0;i<40;i++){
-            var pm=new THREE.Mesh(g,m.clone());
-            pm.position.x=(Math.random()-0.5)*80;pm.position.y=(Math.random()-0.5)*80;pm.position.z=(Math.random()-0.5)*40;
-            pm.userData={vx:(Math.random()-0.5)*0.015,vy:(Math.random()-0.5)*0.015};
-            ps.push(pm);s.add(pm);
-        }
-        var ls=[],lm=new THREE.LineBasicMaterial({color:0x3B82F6,transparent:true,opacity:0.06});
-        for(var i=0;i<ps.length;i++){
-            for(var j=i+1;j<ps.length;j++){
-                if(ps[i].position.distanceTo(ps[j].position)<18){
-                    var l=new THREE.Line(new THREE.BufferGeometry().setFromPoints([ps[i].position,ps[j].position]),lm);
-                    ls.push({line:l,p1:i,p2:j});s.add(l);
-                }
-            }
-        }
-        var mx=0,my=0;
-        document.addEventListener('mousemove',function(e){mx=(e.clientX-window.innerWidth/2)*0.0003;my=(e.clientY-window.innerHeight/2)*0.0003;});
-        window.addEventListener('resize',function(){ca.aspect=window.innerWidth/window.innerHeight;ca.updateProjectionMatrix();r.setSize(window.innerWidth,window.innerHeight);});
-        function a(){
-            requestAnimationFrame(a);
-            ps.forEach(function(p){p.position.x+=p.userData.vx;p.position.y+=p.userData.vy;if(Math.abs(p.position.x)>40)p.userData.vx*=-1;if(Math.abs(p.position.y)>40)p.userData.vy*=-1;});
-            ls.forEach(function(c){var pos=c.line.geometry.attributes.position.array;pos[0]=ps[c.p1].position.x;pos[1]=ps[c.p1].position.y;pos[2]=ps[c.p1].position.z;pos[3]=ps[c.p2].position.x;pos[4]=ps[c.p2].position.y;pos[5]=ps[c.p2].position.z;c.line.geometry.attributes.position.needsUpdate=true;});
-            ca.position.x+=(mx*8-ca.position.x)*0.01;ca.position.y+=(-my*8-ca.position.y)*0.01;ca.lookAt(s.position);r.render(s,ca);
-        }
-        a();
-    })();
-    window.addEventListener('scroll',function(){var s=document.documentElement.scrollTop/(document.documentElement.scrollHeight-document.documentElement.clientHeight)*100;document.getElementById('scroll-progress').style.width=s+'%';});
-    var o=new IntersectionObserver(function(e){e.forEach(function(t){if(t.isIntersecting)t.target.classList.add('visible');})},{threshold:0.1});
-    document.querySelectorAll('.fade-up').forEach(function(el){o.observe(el);});
-    </script>
 </body>
 </html>
