@@ -837,7 +837,7 @@ body.mobile-nav-open .mobile-nav-drawer {
 }
 
 .related-section {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 48px 80px;
   position: relative;
@@ -971,6 +971,8 @@ html[data-theme="dark"] .toast {
   .article-list-grid,
   .feature-grid,
   .related-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1000px;
     grid-template-columns: 1fr;
   }
 
@@ -982,6 +984,7 @@ html[data-theme="dark"] .toast {
 @media (max-width: 768px) {
   .panel-section,
   .related-section {
+  max-width: 1000px;
     padding-left: 24px;
     padding-right: 24px;
   }
