@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业微信开放平台CLI发布：Rust打造的高效管理工具 | NEXUS</title>
+    <meta name="description" content="{{description}}">
+    <link rel="stylesheet" href="/css/article-style.css">
+    <link rel="stylesheet" href="/css/nexus-enhancements.css">
+    <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <header class="header" id="header">
+        <a href="/" class="logo">NEXUS</a>
+        <nav class="nav-links">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/categories/">分类</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
+    </header>
+
+    <section class="article-hero">
+        <div class="article-hero-content hero-content">
+            <div class="article-meta-top">
+                <span class="article-date">2026-04-01</span>
+                <span class="article-category">技术</span>
+            </div>
+            <h1 class="article-title">企业微信开放平台CLI发布：Rust打造的高效管理工具</h1>
+            <p class="article-excerpt"></p>
+            <div class="article-tags">
+                <span class="article-tag">AI</span><span class="article-tag">开发工具</span><span class="article-tag">Rust</span>
+            </div>
+        </div>
+    </section>
+
+    <article class="article-content-wrapper">
+        <div class="article-content">
+            <p>## 原文摘要</p>
+<p>WecomTeam/wecom-cli 是企业微信开放平台的官方命令行工具，使用 Rust 语言开发，支持 AI Agent 集成。该工具让开发者可以在终端中完成企业微信应用管理、消息发送、成员管理等各种操作，同时兼容 AI Agent 的工具调用协议，实现自动化工作流。2026年3月29日发布以来持续保持高热度。</p>
+<p>## 核心要点</p>
+<ul><li>Rust 语言开发，单二进制分发，跨平台支持（macOS/Linux/Windows）</li>
+<li>完整对接企业微信开放平台 API，支持应用管理、消息推送、成员管理</li>
+<li>天然支持 AI Agent 工具调用，可作为 Agent 的企业微信操作工具</li>
+<li>3天内突破1200星，社区反馈积极</li>
+<li>官方维护，质量和更新有保障</li>
+</ul>
+## 推荐理由
+<p>企业微信是大量国内企业的内部协作工具，但其开放平台长期以来缺少趁手的CLI工具，开发者不得不写脚本绕接API。wecom-cli 用 Rust 重构了这一切——性能好、依赖少、适合集成。更值得关注的是它对 AI Agent 的原生支持：未来可以让 AI Agent 直接操作企业微信，实现"AI驱动的内部协作自动化"。这个方向在国内有巨大的实际应用场景。</p>
+<p>## 热度信息</p>
+<p>GitHub Trending Rust 榜单持续在榜，3天内从0增长至1240星，fork 63，2026-03-31仍有活跃更新。</p>
+<p>## 相关链接</p>
+<ul><li>GitHub：https://github.com/WecomTeam/wecom-cli</li>
+</ul>
+        </div>
+    </article>
+
+    <div id="giscus-thread"></div>
+
+    <footer class="footer">
+        <p>© 2026 NEXUS. All rights reserved.</p>
+        <p><a href="/" class="footer-link">返回首页</a></p>
+    </footer>
+
+    <script src="/js/nexus-data.js"></script>
+    <script src="/js/nexus-site.js"></script>
+    <script>
+    window.addEventListener('scroll', function() {
+        var target = document.getElementById('scroll-progress');
+        if (!target) return;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (height <= 0) {
+            target.style.width = '0%';
+            return;
+        }
+        var progress = document.documentElement.scrollTop / height * 100;
+        target.style.width = progress + '%';
+        var header = document.getElementById('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 24);
+        }
+    });
+    </script>
+</body>
+</html>
