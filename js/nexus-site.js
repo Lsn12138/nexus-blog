@@ -730,41 +730,26 @@
   function initProgressiveMotion() {
     motionState.nodes = [...document.querySelectorAll(".home-reveal, .progressive-stage")];
     if (!motionState.nodes.length) return;
-
-    if (!motionState.bound) {
-      window.addEventListener("scroll", queueProgressiveMotion, { passive: true });
-      window.addEventListener("resize", queueProgressiveMotion, { passive: true });
-      motionState.bound = true;
+    if (!("IntersectionObserver" in window)) {
+      motionState.nodes.forEach((node) => node.classList.add("is-visible"));
+      return;
     }
 
-    queueProgressiveMotion();
-  }
-
-  function queueProgressiveMotion() {
-    if (motionState.scheduled) return;
-    motionState.scheduled = true;
-    window.requestAnimationFrame(() => {
-      motionState.scheduled = false;
-      updateProgressiveMotion();
-    });
-  }
-
-  function updateProgressiveMotion() {
-    const viewportHeight = Math.max(window.innerHeight || 0, 1);
-    motionState.nodes = motionState.nodes.filter((node) => node && node.isConnected);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -10% 0px" }
+    );
 
     motionState.nodes.forEach((node) => {
-      const rect = node.getBoundingClientRect();
-      const start = viewportHeight * 0.96;
-      const end = viewportHeight * 0.2;
-      const progress = clamp((start - rect.top) / (start - end), 0, 1);
-      node.style.setProperty("--reveal-progress", progress.toFixed(3));
-      node.classList.toggle("is-visible", progress > 0.56);
+      if (node.classList.contains("is-visible")) return;
+      observer.observe(node);
     });
-  }
-
-  function clamp(value, min, max) {
-    return Math.min(max, Math.max(min, value));
   }
 
   function replaceLatestSection() {

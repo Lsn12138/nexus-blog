@@ -70,14 +70,13 @@ html[data-theme="dark"] .grid-bg {
   padding: 0 14px;
   border: 1px solid var(--nexus-line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
+  background: #ffffff;
   color: var(--text-secondary, var(--nexus-ink-soft));
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-  backdrop-filter: blur(12px);
 }
 
 .header-action:hover,
@@ -156,12 +155,11 @@ body.mobile-nav-open .nav-toggle-bar::after {
   width: min(360px, 88vw);
   height: 100vh;
   padding: 88px 24px 32px;
-  background: rgba(255, 255, 255, 0.96);
+  background: #ffffff;
   box-shadow: var(--nexus-shadow);
   transform: translateX(100%);
   transition: transform 0.25s ease;
   z-index: 1501;
-  backdrop-filter: blur(18px);
 }
 
 body.mobile-nav-open .mobile-nav-backdrop {
@@ -231,7 +229,6 @@ body.mobile-nav-open .mobile-nav-drawer {
   position: absolute;
   inset: 0;
   background: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(6px);
 }
 
 .search-modal__panel {
@@ -243,9 +240,8 @@ body.mobile-nav-open .mobile-nav-drawer {
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.98);
+  background: #ffffff;
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.22);
-  backdrop-filter: blur(18px);
 }
 
 .search-modal__header {
@@ -411,7 +407,7 @@ body.mobile-nav-open .mobile-nav-drawer {
   padding: 20px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  background: #ffffff;
   text-decoration: none;
   color: inherit;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
@@ -535,7 +531,7 @@ body.mobile-nav-open .mobile-nav-drawer {
   padding: 22px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  background: #ffffff;
 }
 
 .stat-card__value,
@@ -609,7 +605,7 @@ body.mobile-nav-open .mobile-nav-drawer {
   padding: 24px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  background: #ffffff;
 }
 
 .profile-avatar {
@@ -640,7 +636,7 @@ body.mobile-nav-open .mobile-nav-drawer {
   padding: 20px;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.92));
+  background: #ffffff;
   text-decoration: none;
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
@@ -1086,13 +1082,12 @@ body.search-open {
 .action-button {
   border-radius: 28px;
   border-color: rgba(29, 29, 31, 0.08);
-  background: rgba(255, 255, 255, 0.76);
+  background: #ffffff;
   box-shadow: none;
 }
 
 .mobile-nav-drawer {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: saturate(180%) blur(24px);
+  background: #ffffff;
 }
 
 .search-modal {
@@ -1101,14 +1096,12 @@ body.search-open {
 
 .search-modal__backdrop {
   background: rgba(29, 29, 31, 0.28);
-  backdrop-filter: blur(10px);
 }
 
 .search-modal__panel {
   width: min(1040px, 100%);
   border: 1px solid rgba(29, 29, 31, 0.08);
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.16);
-  backdrop-filter: saturate(180%) blur(24px);
 }
 
 .search-modal__header,
@@ -1387,7 +1380,7 @@ body.search-open {
   gap: 14px;
   border: 1px solid rgba(29, 29, 31, 0.08);
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.76);
+  background: #ffffff;
 }
 
 .resource-card__actions {
@@ -1553,11 +1546,15 @@ html[data-theme="dark"] .timeline-card::before {
 }
 
 .progressive-stage {
-  --reveal-progress: 0;
-  opacity: calc(0.56 + (var(--reveal-progress) * 0.44));
-  transform: translateY(calc((1 - var(--reveal-progress)) * 18px));
-  transition: opacity 0.14s linear, transform 0.14s linear, border-color 0.22s ease, background-color 0.22s ease;
-  will-change: transform, opacity;
+  opacity: 1;
+  transform: translateY(18px);
+  transition: transform 0.62s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease, background-color 0.22s ease;
+  transition-delay: calc(var(--progressive-order, 0) * 36ms);
+  will-change: transform;
+}
+
+.progressive-stage.is-visible {
+  transform: none;
 }
 
 html[data-theme="dark"] .stat-card__cta,
