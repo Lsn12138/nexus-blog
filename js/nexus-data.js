@@ -77,3 +77,71 @@ window.NEXUS_CONTENT = [
     featured: false
   }
 ];
+,
+  {
+    title: "史上最快破5万星项目：Claude Code开源替代登顶GitHub",
+    url: "/article/20260401-claw-code-rewritten-in-rust/",
+    date: "2026.04.01",
+    category: "AI",
+    tags: ["AI", "开发工具", "Rust"],
+    excerpt: "instructkr/claw-code 重构自泄露 Claude Code 源码，2小时破5万star，刷新GitHub历史纪录。",
+    cover: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=900&q=80",
+    readingTime: 6,
+    featured: false
+  },
+  {
+    title: "Voratiq：多Agent代码生成与自动选择框架",
+    url: "/article/20260401-voratiq-multi-agent/",
+    date: "2026.04.01",
+    category: "AI",
+    tags: ["AI", "多智能体", "代码生成"],
+    excerpt: "Voratiq 是多智能体代码生成框架，支持 AI Agent 协作选择最佳代码实现方案。",
+    cover: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=900&q=80",
+    readingTime: 5,
+    featured: false
+  },
+  {
+    title: "企业微信开放平台CLI发布：Rust打造的高效管理工具",
+    url: "/article/20260401-wecom-cli-rust/",
+    date: "2026.04.01",
+    category: "工具",
+    tags: ["Rust", "企业微信", "CLI"],
+    excerpt: "企业微信开放平台官方 CLI 工具，Rust 开发，单二进制，支持 AI Agent 工具调用。",
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+    readingTime: 4,
+    featured: false
+  }
+  {
+    title: "史上最快破5万星项目：Claude Code开源替代登顶GitHub",
+    url: "/article/20260401-claw-code-rewritten-in-rust/",
+    date: "2026.04.01",
+    category: "AI",
+    tags: ["AI", "开发工具", "Rust"],
+    excerpt: "instructkr/claw-code 重构自泄露 Claude Code 源码，2小时破5万star，刷新GitHub历史纪录。",
+    cover: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=900&q=80",
+    readingTime: 6,
+    featured: false
+  },
+  {
+    title: "Voratiq：多Agent代码生成与自动选择框架",
+    url: "/article/20260401-voratiq-multi-agent/",
+    date: "2026.04.01",
+    category: "AI",
+    tags: ["AI", "多智能体", "代码生成"],
+    excerpt: "Voratiq 是多智能体代码生成框架，支持 AI Agent 协作选择最佳代码实现方案。",
+    cover: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=900&q=80",
+    readingTime: 5,
+    featured: false
+  },
+  {
+    title: "企业微信开放平台CLI发布：Rust打造的高效管理工具",
+    url: "/article/20260401-wecom-cli-rust/",
+    date: "2026.04.01",
+    category: "工具",
+    tags: ["Rust", "企业微信", "CLI"],
+    excerpt: "企业微信开放平台官方 CLI 工具，Rust 开发，单二进制，支持 AI Agent 工具调用。",
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+    readingTime: 4,
+    featured: false
+  }
+];
