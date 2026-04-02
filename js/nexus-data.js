@@ -6,7 +6,7 @@ window.NEXUS_CONTENT = [
     category: "AI",
     tags: ["AI", "语音AI", "开源"],
     excerpt: "微软 VibeVoice 是前沿语音 AI 框架，包含 TTS 和 ASR 两大模型族。TTS 支持 90 分钟长音频合成，已被 ICLR 2026 录用为 Oral 论文；ASR 已集成进 Hugging Face Transformers。",
-    cover: "https://microsoft.github.io/VibeVoice/assets/images/vibevoice-logo.png",
+    cover: "https://www.lsn.org.cn/img/vibevoice-cover.jpg",
     readingTime: 5,
     featured: true
   },

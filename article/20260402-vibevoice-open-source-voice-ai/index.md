@@ -3,8 +3,8 @@ title: 微软开源VibeVoice：前沿语音AI，支持90分钟长音频合成
 date: 2026-04-02
 tags: [AI, 语音AI, 开源]
 categories: 技术
-image: https://microsoft.github.io/VibeVoice/assets/images/vibevoice-logo.png
-image_source: Microsoft VibeVoice 官方页面
+image: https://www.lsn.org.cn/img/vibevoice-cover.jpg
+image_source: Unsplash
 ---
 
 ## 原文摘要

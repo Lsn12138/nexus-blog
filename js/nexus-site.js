@@ -414,17 +414,43 @@
 
   function bindSearchWheelScroll(container) {
     if (!container) return;
-    container.addEventListener(
-      "wheel",
-      (event) => {
-        if (!state.searchOpen) return;
-        const canScroll = container.scrollHeight > container.clientHeight + 1;
-        if (!canScroll) return;
-        container.scrollTop += event.deltaY;
+    const handler = (event) => {
+      if (!state.searchOpen) return;
+      // Find the actual scrollable element within the search panel
+      // that contains this container
+      const scrollEl = container.querySelector(".search-results") ||
+                       container.querySelector(".search-results-grid") ||
+                       container;
+      if (!scrollEl) return;
+      const { scrollTop, scrollHeight, clientHeight } = scrollEl;
+      const canScroll = scrollHeight > clientHeight + 1;
+      if (canScroll) {
+        scrollEl.scrollTop += event.deltaY;
+        event.stopPropagation();
         event.preventDefault();
-      },
-      { passive: false }
-    );
+        return;
+      }
+      // If content doesn't overflow, just block the event from bubbling
+      event.stopPropagation();
+      event.preventDefault();
+    };
+    container.addEventListener("wheel", handler, { passive: false });
+    const panel = container.closest(".search-modal__panel");
+    if (panel) {
+      panel.addEventListener("wheel", handler, { passive: false });
+    }
+    // Also listen on the modal backdrop so wheel outside panel doesn't scroll page
+    const modal = container.closest(".search-modal");
+    if (modal) {
+      const backdrop = modal.querySelector(".search-modal__backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("wheel", (event) => {
+          if (!state.searchOpen) return;
+          event.stopPropagation();
+          event.preventDefault();
+        }, { passive: false });
+      }
+    }
   }
 
   function openSearch(modal) {

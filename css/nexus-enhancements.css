@@ -273,19 +273,22 @@ body.mobile-nav-open .mobile-nav-drawer {
   overflow: hidden;
 }
 
+.search-main {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: calc(100vh - 260px);
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
 .search-sidebar {
   padding: 22px 24px 26px;
   border-right: 1px solid rgba(148, 163, 184, 0.14);
   min-height: 0;
   overflow-y: auto;
   background: linear-gradient(180deg, rgba(248, 250, 252, 0.8), transparent);
-}
-
-.search-main {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  min-height: 0;
 }
 
 .search-input-wrap {
