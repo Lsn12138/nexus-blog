@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>企业微信开放平台CLI发布：Rust打造的高效管理工具 | NEXUS</title>
-    <meta name="description" content="企业微信开放平台CLI发布：Rust打造的高效管理工具">
+    <title>Google开源TimesFM 2.5：参数量砍半，上下文扩展16倍 | NEXUS</title>
+    <meta name="description" content="Google开源TimesFM 2.5：参数量砍半，上下文扩展16倍">
     <link rel="stylesheet" href="/css/article-style.css">
     <link rel="stylesheet" href="/css/nexus-enhancements.css">
     <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
@@ -27,13 +27,13 @@
     <section class="article-hero">
         <div class="article-hero-content hero-content">
             <div class="article-meta-top">
-                <span class="article-date">2026-04-01</span>
+                <span class="article-date">2026-04-02</span>
                 <span class="article-category">技术</span>
             </div>
-            <h1 class="article-title">企业微信开放平台CLI发布：Rust打造的高效管理工具</h1>
+            <h1 class="article-title">Google开源TimesFM 2.5：参数量砍半，上下文扩展16倍</h1>
             <p class="article-excerpt"></p>
             <div class="article-tags">
-                <span class="article-tag">AI</span><span class="article-tag">开发工具</span><span class="article-tag">Rust</span>
+                <span class="article-tag">AI</span><span class="article-tag">大模型</span><span class="article-tag">时间序列</span>
             </div>
         </div>
     </section>
@@ -41,22 +41,25 @@
     <article class="article-content-wrapper">
         <div class="article-content">
             <h2>原文摘要</h2>
-<p>WecomTeam/wecom-cli 是企业微信开放平台的官方命令行工具，使用 Rust 语言开发，支持 AI Agent 集成。该工具让开发者可以在终端中完成企业微信应用管理、消息发送、成员管理等各种操作，同时兼容 AI Agent 的工具调用协议，实现自动化工作流。2026年3月29日发布以来持续保持高热度。</p>
+<p>Google Research 发布 TimesFM 2.5，是其时间序列预测基础模型的最新版本。相比 2.0 版本，新版将参数量从 500M 降至 200M，同时将上下文长度从 2,048 扩展至 16,384，增幅达 8 倍。此外新增连续分位数预测头（Continuous Quantile Head），支持最长 1,000 步预测，并去掉了频率指示器简化使用流程。模型已在 Hugging Face 发布，可通过 `pip install timesfm` 直接加载。</p>
 <h2>核心要点</h2>
 <ul>
-<li>Rust 语言开发，单二进制分发，跨平台支持（macOS/Linux/Windows）</li>
-<li>完整对接企业微信开放平台 API，支持应用管理、消息推送、成员管理</li>
-<li>天然支持 AI Agent 工具调用，可作为 Agent 的企业微信操作工具</li>
-<li>3天内突破1200星，社区反馈积极</li>
-<li>官方维护，质量和更新有保障</li>
+<li>参数量减少 60%（500M→200M），更适合边缘和端侧部署</li>
+<li>上下文长度提升 8 倍（2k→16k），处理长序列能力大幅增强</li>
+<li>新增可选 30M 分位数预测头，支持不确定性量化输出</li>
+<li>移除频率指示器，使用门槛降低，API 更简洁</li>
+<li>支持 PyTorch 和 Flax 两种后端，Hugging Face 直接可用</li>
 </ul>
 <h2>推荐理由</h2>
-<p>企业微信是大量国内企业的内部协作工具，但其开放平台长期以来缺少趁手的CLI工具，开发者不得不写脚本绕接API。wecom-cli 用 Rust 重构了这一切——性能好、依赖少、适合集成。更值得关注的是它对 AI Agent 的原生支持：未来可以让 AI Agent 直接操作企业微信，实现"AI驱动的内部协作自动化"。这个方向在国内有巨大的实际应用场景。</p>
+<p>时间序列预测是大模型落地的重要场景，而 TimesFM 2.5 的核心改进——小模型、长上下文——直接命中了实际部署的痛点。200M 参数意味着可以在消费级 GPU 上运行，16k 上下文意味着能处理更长的历史数据，这对工业 IoT、运维监控、金融预测等场景非常有价值。作为 Google 官方支持的项目，其稳定性和持续迭代有保障，是一个值得放进技术栈的基础模型。</p>
 <h2>热度信息</h2>
-<p>GitHub Trending Rust 榜单持续在榜，3天内从0增长至1240星，fork 63，2026-03-31仍有活跃更新。</p>
+<p>GitHub Trending 今日在榜，Google Research 官方博客背书。TimesFM 1.0 论文为 ICML 2024 录用，2.5 版本为最新正式发布。</p>
 <h2>相关链接</h2>
 <ul>
-<li>GitHub：https://github.com/WecomTeam/wecom-cli</li>
+<li>GitHub：https://github.com/google-research/timesfm</li>
+<li>Hugging Face：https://huggingface.co/collections/google/timesfm-release-66e4be5fdb56e960c1e482a6</li>
+<li>Google Research Blog：https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/</li>
+<li>论文：https://arxiv.org/abs/2310.10688</li>
 </ul>
         </div>
     </article>

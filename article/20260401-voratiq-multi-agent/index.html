@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voratiq：多Agent代码生成与自动选择框架 | NEXUS</title>
-    <meta name="description" content="{{description}}">
+    <meta name="description" content="Voratiq：多Agent代码生成与自动选择框架">
     <link rel="stylesheet" href="/css/article-style.css">
     <link rel="stylesheet" href="/css/nexus-enhancements.css">
     <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
 </head>
 <body>
+    <div id="canvas-bg"></div>
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <header class="header" id="header">
@@ -39,21 +40,23 @@
 
     <article class="article-content-wrapper">
         <div class="article-content">
-            <p>## 原文摘要</p>
+            <h2>原文摘要</h2>
 <p>Voratiq 是一个基于 Agent 集成实现代码自动生成的框架，其核心理念是"让多个AI编码Agent协同工作，由系统自动评估并选择最优结果"。不同于单一Agent方案，Voratiq 通过多Agent并行生成、ensemble评估的方式，提升代码任务的完成质量和稳定性。支持 Claude Code、Codex、Gemini CLI 等多种底层Agent引擎。</p>
-<p>## 核心要点</p>
-<ul><li>多Agent并行生成：同时调用多个编码Agent，产出多份候选代码</li>
+<h2>核心要点</h2>
+<ul>
+<li>多Agent并行生成：同时调用多个编码Agent，产出多份候选代码</li>
 <li>自动选择机制：基于评估器选择最佳或最合适的代码结果</li>
 <li>支持主流Agent：Claude Code、OpenAI Codex、Gemini CLI 等</li>
 <li>spec-driven 开发：强调通过规范驱动生成流程</li>
 <li>沙箱隔离执行，保障安全</li>
 </ul>
-## 推荐理由
+<h2>推荐理由</h2>
 <p>当前AI编程工具的痛点之一是"单Agent输出不稳定"——有时候很好，有时候生成代码有bug或方向跑偏。Voratiq 提出的多Agent ensemble思路，本质上是把"群体智慧"引入代码生成：让不同Agent各自解题，再统一评判。这个思路在学术和工程层面都有价值——它比单Agent更可靠，同时也比简单投票更智能（因为评估器能理解代码质量）。如果这个方向成熟，可能会成为下一代AI编程工具的标准架构。</p>
-<p>## 热度信息</p>
+<h2>热度信息</h2>
 <p>GitHub 2026-04-01当天新发，1天内获得64星，11 fork，处于快速增长期，具体热度数据尚待观察。</p>
-<p>## 相关链接</p>
-<ul><li>GitHub：https://github.com/voratiq/voratiq</li>
+<h2>相关链接</h2>
+<ul>
+<li>GitHub：https://github.com/voratiq/voratiq</li>
 </ul>
         </div>
     </article>
@@ -84,5 +87,6 @@
         }
     });
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </body>
 </html>
