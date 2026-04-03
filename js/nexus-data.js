@@ -1,13 +1,13 @@
 window.NEXUS_CONTENT = [
   {
-    title: "微软开源VibeVoice：前沿语音AI，支持90分钟长音频合成",
-    url: "/article/20260402-vibevoice-open-source-voice-ai/",
+    title: "Google开源TimesFM 2.5：参数量砍半，上下文扩展16倍",
+    url: "/article/20260402-google-timesfm-2-5-update/",
     date: "2026.04.02",
     category: "AI",
-    tags: ["AI", "语音AI", "开源"],
-    excerpt: "微软 VibeVoice 是前沿语音 AI 框架，包含 TTS 和 ASR 两大模型族。TTS 支持 90 分钟长音频合成，已被 ICLR 2026 录用为 Oral 论文；ASR 已集成进 Hugging Face Transformers。",
-    cover: "https://www.lsn.org.cn/img/vibevoice-cover.jpg",
-    readingTime: 5,
+    tags: ["AI", "大模型", "时间序列"],
+    excerpt: "Google Research 发布 TimesFM 2.5，参数量从 500M 降至 200M，上下文从 2k 扩展至 16k，支持更长时序预测。可通过 pip 直接加载，适合边缘部署。",
+    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+    readingTime: 4,
     featured: true
   },
   {
@@ -22,14 +22,14 @@ window.NEXUS_CONTENT = [
     featured: false
   },
   {
-    title: "Google开源TimesFM 2.5：参数量砍半，上下文扩展8倍",
-    url: "/article/20260402-google-timesfm-2-5-update/",
+    title: "微软开源VibeVoice：前沿语音AI，支持90分钟长音频合成",
+    url: "/article/20260402-vibevoice-open-source-voice-ai/",
     date: "2026.04.02",
     category: "AI",
-    tags: ["AI", "大模型", "时间序列"],
-    excerpt: "Google Research 发布 TimesFM 2.5，参数量从 500M 降至 200M，上下文从 2k 扩展至 16k，支持更长时序预测。可通过 pip 直接加载，适合边缘部署。",
-    cover: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
-    readingTime: 4,
+    tags: ["AI", "语音AI", "开源"],
+    excerpt: "微软 VibeVoice 是前沿语音 AI 框架，包含 TTS 和 ASR 两大模型族。TTS 支持 90 分钟长音频合成，已被 ICLR 2026 录用为 Oral 论文；ASR 已集成进 Hugging Face Transformers。",
+    cover: "https://www.lsn.org.cn/img/vibevoice-cover.jpg",
+    readingTime: 5,
     featured: false
   },
   {
