@@ -1,5 +1,27 @@
 window.NEXUS_CONTENT = [
   {
+    title: "Oh My Codex：Codex CLI 工作流增强框架",
+    url: "/article/20260403-oh-my-codex/",
+    date: "2026.04.03",
+    category: "AI",
+    tags: ["AI", "开发工具"],
+    excerpt: "Oh My Codex 为 OpenAI Codex CLI 打造的工作流增强层，通过 $deep-interview、$ralplan、$team、$ralph 四个核心命令，将日常开发任务拆解为「需求澄清 → 方案审批 → 执行」的标准化流程，支持多智能体并行执行。",
+    cover: "https://opengraph.githubassets.com/prod/Yeachan-Heo/oh-my-codex",
+    readingTime: 4,
+    featured: true
+  },
+  {
+    title: "OpenScreen：免费开源录屏替代 Screen Studio",
+    url: "/article/20260403-openscreen/",
+    date: "2026.04.03",
+    category: "工具",
+    tags: ["开发工具", "开源"],
+    excerpt: "OpenScreen 是 Screen Studio（$29/月）的免费开源替代品，Electron + React + TypeScript + PixiJS 构建，支持全屏/窗口录制、自动缩放、麦克风+系统音频、可视化剪辑、GIF 导出，macOS/Windows/Linux 全平台。",
+    cover: "https://raw.githubusercontent.com/siddharthvaddem/openscreen/main/public/openscreen.png",
+    readingTime: 3,
+    featured: false
+  },
+  {
     title: "Google开源TimesFM 2.5：参数量砍半，上下文扩展16倍",
     url: "/article/20260402-google-timesfm-2-5-update/",
     date: "2026.04.02",
