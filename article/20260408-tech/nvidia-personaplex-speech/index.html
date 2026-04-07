@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA PersonaPlex：实时语音对话的端侧模型 | NEXUS</title>
+    <meta name="description" content="NVIDIA PersonaPlex：实时语音对话的端侧模型">
+    <link rel="stylesheet" href="/css/article-style.css">
+    <link rel="stylesheet" href="/css/nexus-enhancements.css">
+    <link rel="icon" href="https://images.mfanjk.com/2026/03/27/1774603940729">
+</head>
+<body>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <header class="header" id="header">
+        <a href="/" class="logo">NEXUS</a>
+        <nav class="nav-links">
+            <a href="/">首页</a>
+            <a href="/archives/">归档</a>
+            <a href="/categories/">分类</a>
+            <a href="/tags/">标签</a>
+            <a href="/about/">关于</a>
+        </nav>
+    </header>
+    <section class="article-hero">
+        <div class="article-hero-content hero-content">
+            <div class="article-meta-top">
+                <span class="article-date">2026-04-08</span>
+                <span class="article-category">技术</span>
+            </div>
+            <h1 class="article-title">NVIDIA PersonaPlex：实时语音对话的端侧模型</h1>
+            <div class="article-tags"><span class="article-tag">AI</span><span class="article-tag">大模型</span></div>
+        </div>
+    </section>
+    <article class="article-content-wrapper">
+        <div class="article-content"><h2>📌 原文摘要</h2>
+<p>PersonaPlex 是 NVIDIA 开源的全双工（full-duplex）语音对话模型，基于 Moshi 架构微调，支持实时语音 in/语音 out 的角色扮演式对话。用户可通过文本描述或音频样本定义角色人格，模型在对话中保持一致。支持服务场景（客服、销售）和开放闲聊两类角色，当前在 Hugging Face 已有 7B 版本可下载。本地部署仅需单卡 GPU，官方提供 Web UI 和离线脚本两种使用方式。</p>
+<h2>🧠 核心要点</h2>
+<ul>
+<li><strong>全双工实时对话</strong>：区别于传统 TTS + ASR 串联方案，PersonaPlex 是原生语音到语音的端到端模型，低延迟是核心优势</li>
+<li><strong>角色控制双模式</strong>：支持文本 prompt（定义人格/场景）和音频 voice prompt（用声音样本定义音色），两者可组合使用</li>
+<li><strong>多角色预设</strong>：内置多种固定声音（NAT 系列自然女声/NAT 系列自然男声/VAR 系列多变音色），开箱即用</li>
+<li><strong>基于 Moshi + Helium</strong>：继承开源社区成熟架构，NVIDIA 在其基础上做了角色对话专项微调，降低了复现门槛</li>
+<li><strong>本地可部署</strong>：MIT 协议，支持自托管，适合需要数据留存的客服场景，无需将语音数据发送到第三方</li>
+</ul>
+<h2>🔥 推荐理由</h2>
+<p><strong>语音 Agent 赛道值得关注。</strong> 2025-2026 年是 AI Agent 爆发年，而大多数 Agent 产品还停留在"文字输入 → 文字输出"阶段。PersonaPlex 的出现说明多模态（语音）Agent 的基础设施正在快速成熟。</p>
+<p>它的定位很有意思：不是做一个通用的语音助手，而是专注"角色扮演式对话"——客服、外卖、导游、教学等垂直场景。这种差异化让它比通用语音助手更容易落地。国内很多团队在做类似的 AI 客服/电话销售产品，PersonaPlex 的架构值得参考，尤其是如何在端侧控制对话延迟。</p>
+<h2>📊 热度信息</h2>
+<p>今日 GitHub Trending 排名靠前，24h 内新增约 <strong>663 stars</strong>，总 stars 7,776，NVIDIA 官方出品。</p>
+<h2>🔗 相关链接</h2>
+<ul>
+<li>GitHub：<a href="https://github.com/NVIDIA/personaplex">https://github.com/NVIDIA/personaplex</a></li>
+<li>Hugging Face：<a href="https://huggingface.co/nvidia/personaplex-7b-v1">https://huggingface.co/nvidia/personaplex-7b-v1</a></li>
+<li>论文：<a href="https://arxiv.org/abs/2602.06053">https://arxiv.org/abs/2602.06053</a></li>
+<li>NVIDIA Research：<a href="https://research.nvidia.com/labs/adlr/personaplex/">https://research.nvidia.com/labs/adlr/personaplex/</a></li>
+</ul></div>
+    </article>
+    <div id="giscus-thread"></div>
+    <footer class="footer">
+        <p>© 2026 NEXUS. All rights reserved.</p>
+        <p><a href="/" class="footer-link">返回首页</a></p>
+    </footer>
+    <script src="/js/nexus-data.js"></script>
+    <script src="/js/nexus-site.js"></script>
+    <script>
+    window.addEventListener('scroll', function() {
+        var target = document.getElementById('scroll-progress');
+        if (!target) return;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        if (height <= 0) { target.style.width = '0%'; return; }
+        var progress = document.documentElement.scrollTop / height * 100;
+        target.style.width = progress + '%';
+        var header = document.getElementById('header');
+        if (header) { header.classList.toggle('scrolled', window.scrollY > 24); }
+    });
+    </script>
+</body>
+</html>
