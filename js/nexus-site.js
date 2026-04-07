@@ -416,30 +416,21 @@
     if (!container) return;
     const handler = (event) => {
       if (!state.searchOpen) return;
-      // Find the actual scrollable element within the search panel
-      // that contains this container
-      const scrollEl = container.querySelector(".search-results") ||
-                       container.querySelector(".search-results-grid") ||
-                       container;
-      if (!scrollEl) return;
-      const { scrollTop, scrollHeight, clientHeight } = scrollEl;
-      const canScroll = scrollHeight > clientHeight + 1;
-      if (canScroll) {
-        scrollEl.scrollTop += event.deltaY;
-        event.stopPropagation();
+      const scrollEl = container;
+      const canScroll = scrollEl.scrollHeight > scrollEl.clientHeight + 1;
+      if (!canScroll) {
         event.preventDefault();
         return;
       }
-      // If content doesn't overflow, just block the event from bubbling
-      event.stopPropagation();
+
+      scrollEl.scrollTop += event.deltaY;
       event.preventDefault();
+      event.stopPropagation();
     };
+
     container.addEventListener("wheel", handler, { passive: false });
-    const panel = container.closest(".search-modal__panel");
-    if (panel) {
-      panel.addEventListener("wheel", handler, { passive: false });
-    }
-    // Also listen on the modal backdrop so wheel outside panel doesn't scroll page
+
+    // Keep wheel events on backdrop from affecting the page.
     const modal = container.closest(".search-modal");
     if (modal) {
       const backdrop = modal.querySelector(".search-modal__backdrop");
