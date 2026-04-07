@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" style="background:#1a1a2e">
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="Arial">nginx alias 配置错误与修正</text>
+
+  <rect x="0" y="40" width="430" height="260" rx="8" fill="#2d1f1f" stroke="#e74c3c" stroke-width="2"/>
+  <rect x="0" y="40" width="430" height="32" rx="8" fill="#e74c3c"/>
+  <text x="215" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff" font-family="Arial">❌ 错误配置</text>
+  <text x="12" y="96" font-size="11" fill="#cccccc" font-family="Arial">文件实际：/workspace/data/国际新闻_20260407.md</text>
+  <rect x="10" y="104" width="410" height="30" rx="4" fill="#1a0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="215" y="125" text-anchor="middle" font-size="11" fill="#f5a0a0" font-family="monospace">/workspace/data/国际新闻_20260407.md</text>
+  <text x="12" y="158" font-size="11" fill="#cccccc" font-family="Arial">nginx alias 指向：</text>
+  <rect x="10" y="166" width="410" height="30" rx="4" fill="#1a0a0a" stroke="#e74c3c" stroke-width="1"/>
+  <text x="215" y="187" text-anchor="middle" font-size="11" fill="#f5a0a0" font-family="monospace">/workspace/website/downloads/ ← 不同步！</text>
+  <text x="215" y="228" text-anchor="middle" font-size="13" fill="#e74c3c" font-family="Arial">❌ 访问 404</text>
+
+  <polygon points="445,190 430,180 430,200" fill="#ffffff" fill-opacity="0.6"/>
+  <line x1="430" y1="190" x2="455" y2="190" stroke="#ffffff" stroke-opacity="0.6" stroke-width="2"/>
+
+  <rect x="470" y="40" width="430" height="260" rx="8" fill="#1f2d1f" stroke="#27ae60" stroke-width="2"/>
+  <rect x="470" y="40" width="430" height="32" rx="8" fill="#27ae60"/>
+  <text x="685" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff" font-family="Arial">✅ 正确配置</text>
+  <text x="482" y="96" font-size="11" fill="#cccccc" font-family="Arial">文件实际：/workspace/data/国际新闻_20260407.md</text>
+  <rect x="480" y="104" width="410" height="30" rx="4" fill="#0a1a0a" stroke="#27ae60" stroke-width="1"/>
+  <text x="685" y="125" text-anchor="middle" font-size="11" fill="#a0e8b0" font-family="monospace">/workspace/data/国际新闻_20260407.md</text>
+  <text x="482" y="158" font-size="11" fill="#cccccc" font-family="Arial">nginx alias 指向：</text>
+  <rect x="480" y="166" width="410" height="30" rx="4" fill="#0a1a0a" stroke="#27ae60" stroke-width="1"/>
+  <text x="685" y="187" text-anchor="middle" font-size="11" fill="#a0e8b0" font-family="monospace">/workspace/data/ ← 一致！</text>
+  <text x="685" y="228" text-anchor="middle" font-size="13" fill="#27ae60" font-family="Arial">✅ 访问 200 OK</text>
+
+  <rect x="470" y="238" width="410" height="44" rx="5" fill="#0d1a0d" stroke="#27ae60" stroke-width="1"/>
+  <text x="485" y="258" font-size="10" fill="#7eb87e" font-family="monospace">location /downloads/ {</text>
+  <text x="485" y="272" font-size="10" fill="#7eb87e" font-family="monospace">  alias /workspace/data/; autoindex on;</text>
+  <text x="485" y="278" font-size="10" fill="#7eb87e" font-family="monospace">}</text>
+
+  <rect x="0" y="315" width="900" height="36" rx="5" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1"/>
+  <text x="450" y="339" text-anchor="middle" font-size="12" fill="#7eb8da" font-family="Arial">💡 教训：nginx 配置改完要 reload 并实际访问 URL 测试，不能只靠眼盯配置文件！</text>
+</svg>

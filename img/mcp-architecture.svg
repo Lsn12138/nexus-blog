@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="hostGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90d9"/>
+      <stop offset="100%" style="stop-color:#325c8a"/>
+    </linearGradient>
+    <linearGradient id="serverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e07b39"/>
+      <stop offset="100%" style="stop-color:#b85c20"/>
+    </linearGradient>
+    <linearGradient id="toolGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#1e8449"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="520" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="42" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif">MCP 协议架构图</text>
+  <text x="400" y="66" text-anchor="middle" font-size="13" fill="#a0aec0" font-family="Arial, sans-serif">Model Context Protocol — AI 与外部世界的标准化连接</text>
+
+  <!-- MCP Host Box -->
+  <rect x="40" y="90" width="230" height="340" rx="10" fill="url(#hostGrad)" filter="url(#shadow)"/>
+  <text x="155" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif">🤖 MCP Host</text>
+  <text x="155" y="140" text-anchor="middle" font-size="12" fill="#cbd5e0" font-family="Arial, sans-serif">Claude Desktop / Cursor / 你的应用</text>
+
+  <!-- Host Internal: Client -->
+  <rect x="60" y="155" width="190" height="55" rx="6" fill="#2d4a6f" stroke="#5a9fd4" stroke-width="1.5"/>
+  <text x="155" y="178" text-anchor="middle" font-size="14" fill="#ffffff" font-family="Arial, sans-serif">MCP Client</text>
+  <text x="155" y="196" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial, sans-serif">协议实现</text>
+
+  <!-- Arrow: Client -> Server -->
+  <line x1="250" y1="182" x2="295" y2="182" stroke="#5a9fd4" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#5a9fd4"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e07b39"/>
+    </marker>
+  </defs>
+  <text x="272" y="172" text-anchor="middle" font-size="10" fill="#5a9fd4" font-family="Arial, sans-serif">SSE/HTTP</text>
+
+  <!-- MCP Server Box -->
+  <rect x="300" y="90" width="230" height="340" rx="10" fill="url(#serverGrad)" filter="url(#shadow)"/>
+  <text x="415" y="120" text-anchor="middle" font-size="17" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif">⚙️ MCP Server</text>
+  <text x="415" y="140" text-anchor="middle" font-size="12" fill="#f5d0b0" font-family="Arial, sans-serif">Node.js / Python / 你写的服务</text>
+
+  <!-- Server Internal -->
+  <rect x="320" y="155" width="190" height="55" rx="6" fill="#7a4020" stroke="#e07b39" stroke-width="1.5"/>
+  <text x="415" y="178" text-anchor="middle" font-size="14" fill="#ffffff" font-family="Arial, sans-serif">Request Handler</text>
+  <text x="415" y="196" text-anchor="middle" font-size="11" fill="#f5c090" font-family="Arial, sans-serif">工具注册 / 调用路由</text>
+
+  <!-- Arrow: Server -> Resources -->
+  <line x1="415" y1="210" x2="415" y2="245" stroke="#e07b39" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="430" y="232" text-anchor="middle" font-size="10" fill="#e07b39" font-family="Arial, sans-serif">暴露</text>
+
+  <!-- Resources/Tools/Prompts -->
+  <rect x="325" y="250" width="180" height="30" rx="5" fill="#27ae60" opacity="0.9"/>
+  <text x="415" y="270" text-anchor="middle" font-size="13" fill="#ffffff" font-family="Arial, sans-serif">📄 Resources（资源）</text>
+
+  <rect x="325" y="290" width="180" height="30" rx="5" fill="#e74c3c" opacity="0.9"/>
+  <text x="415" y="310" text-anchor="middle" font-size="13" fill="#ffffff" font-family="Arial, sans-serif">🔧 Tools（工具）⭐核心</text>
+
+  <rect x="325" y="330" width="180" height="30" rx="5" fill="#9b59b6" opacity="0.9"/>
+  <text x="415" y="350" text-anchor="middle" font-size="13" fill="#ffffff" font-family="Arial, sans-serif">💡 Prompts（提示模板）</text>
+
+  <!-- Right side: External -->
+  <rect x="545" y="155" width="220" height="180" rx="10" fill="#2d3a4a" stroke="#4a5568" stroke-width="1.5"/>
+  <text x="655" y="182" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif">🌐 外部世界</text>
+
+  <rect x="560" y="195" width="190" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="655" y="214" text-anchor="middle" font-size="12" fill="#7eb8da" font-family="Arial, sans-serif">🗄️ 数据库 / 文件系统</text>
+
+  <rect x="560" y="233" width="190" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="655" y="252" text-anchor="middle" font-size="12" fill="#7eb8da" font-family="Arial, sans-serif">🌍 第三方 API</text>
+
+  <rect x="560" y="271" width="190" height="28" rx="4" fill="#1e3a5f"/>
+  <text x="655" y="290" text-anchor="middle" font-size="12" fill="#7eb8da" font-family="Arial, sans-serif">⚡ 实时数据 / 传感器</text>
+
+  <!-- Arrow: Tools -> External -->
+  <line x1="505" y1="305" x2="555" y2="305" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <defs>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+  <text x="530" y="296" text-anchor="middle" font-size="10" fill="#27ae60" font-family="Arial, sans-serif">调用</text>
+
+  <!-- Bottom: AI Model -->
+  <rect x="40" y="445" width="725" height="55" rx="8" fill="#1e3a5f" stroke="#5a9fd4" stroke-width="1.5"/>
+  <text x="400" y="472" text-anchor="middle" font-size="16" fill="#ffffff" font-family="Arial, sans-serif">🧠 AI Model（Claude / GPT-4 / ...）← 获得"手和脚"，真正执行任务</text>
+</svg>

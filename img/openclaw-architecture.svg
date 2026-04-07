@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560">
+  <defs>
+    <linearGradient id="bgA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bgA)" rx="12"/>
+
+  <text x="500" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#ffffff" font-family="Arial">OpenClaw 部署架构全景图</text>
+
+  <!-- User -->
+  <rect x="20" y="220" width="120" height="80" rx="10" fill="#1e3a5f" stroke="#4a90d9" stroke-width="2" filter="url(#glow)"/>
+  <text x="80" y="252" text-anchor="middle" font-size="30">👤</text>
+  <text x="80" y="282" text-anchor="middle" font-size="13" fill="#7eb8da" font-family="Arial">用户</text>
+
+  <!-- Arrow: User -> QQ Bot -->
+  <line x1="140" y1="260" x2="185" y2="260" stroke="#4a90d9" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="162" y="250" text-anchor="middle" font-size="11" fill="#4a90d9" font-family="Arial">QQ消息</text>
+
+  <!-- QQ Bot -->
+  <rect x="190" y="210" width="140" height="100" rx="10" fill="#1e3a5f" stroke="#4a90d9" stroke-width="2"/>
+  <text x="260" y="242" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a90d9" font-family="Arial">QQ Bot</text>
+  <text x="260" y="262" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial">qqbot plugin</text>
+  <text x="260" y="280" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial">WebSocket 接收</text>
+  <text x="260" y="298" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial">私聊/群聊</text>
+
+  <!-- Arrow: QQ -> OpenClaw -->
+  <line x1="330" y1="260" x2="370" y2="260" stroke="#4a90d9" stroke-width="2"/>
+  <text x="350" y="250" text-anchor="middle" font-size="11" fill="#4a90d9" font-family="Arial">消息</text>
+
+  <!-- OpenClaw Gateway -->
+  <rect x="375" y="160" width="250" height="200" rx="12" fill="#1a2744" stroke="#9b59b6" stroke-width="2.5" filter="url(#glow)"/>
+  <text x="500" y="192" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff" font-family="Arial">⚙️ OpenClaw Gateway</text>
+
+  <!-- MiniMax model -->
+  <rect x="390" y="205" width="220" height="40" rx="6" fill="#2d1f3d" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="500" y="230" text-anchor="middle" font-size="13" fill="#d0a0e0" font-family="Arial">MiniMax M2.7 模型</text>
+
+  <!-- Cron jobs -->
+  <rect x="390" y="255" width="220" height="90" rx="6" fill="#2d1f3d" stroke="#9b59b6" stroke-width="1.5"/>
+  <text x="500" y="278" text-anchor="middle" font-size="12" fill="#d0a0e0" font-family="Arial">⏰ Cron 定时任务</text>
+  <text x="500" y="296" text-anchor="middle" font-size="10" fill="#a0a0c0" font-family="Arial">• 国际新闻 9:05 (工作日)</text>
+  <text x="500" y="312" text-anchor="middle" font-size="10" fill="#a0a0c0" font-family="Arial">• 技术策展 8:00 (工作日)</text>
+  <text x="500" y="328" text-anchor="middle" font-size="10" fill="#a0a0c0" font-family="Arial">• 知识库构建 23:00</text>
+
+  <!-- Arrow: Gateway -> Server -->
+  <line x1="625" y1="260" x2="665" y2="260" stroke="#27ae60" stroke-width="2"/>
+  <text x="645" y="250" text-anchor="middle" font-size="11" fill="#27ae60" font-family="Arial">服务</text>
+
+  <!-- Server -->
+  <rect x="670" y="160" width="200" height="200" rx="10" fill="#1e3a5f" stroke="#27ae60" stroke-width="2"/>
+  <text x="770" y="192" text-anchor="middle" font-size="15" font-weight="bold" fill="#27ae60" font-family="Arial">🖥️ 阿里云 ECS</text>
+
+  <text x="770" y="220" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial">Ubuntu Linux</text>
+  <text x="770" y="240" text-anchor="middle" font-size="11" fill="#a0c4e8" font-family="Arial">Node.js v24</text>
+
+  <!-- Services list -->
+  <rect x="685" y="252" width="170" height="95" rx="5" fill="#0a1a2f" stroke="#27ae60" stroke-width="1"/>
+  <text x="770" y="272" text-anchor="middle" font-size="11" fill="#27ae60" font-family="Arial">已运行服务：</text>
+  <text x="770" y="292" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">• OpenClaw Gateway :10931</text>
+  <text x="770" y="310" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">• nginx :80/:443</text>
+  <text x="770" y="328" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">• HTTP下载 :9999</text>
+  <text x="770" y="343" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">• SearXNG :8080</text>
+
+  <!-- External services -->
+  <rect x="150" y="380" width="170" height="130" rx="10" fill="#1e3a5f" stroke="#e07b39" stroke-width="2"/>
+  <text x="235" y="410" text-anchor="middle" font-size="13" font-weight="bold" fill="#e07b39" font-family="Arial">🌐 外部服务</text>
+  <text x="235" y="436" text-anchor="middle" font-size="10" fill="#f5c090" font-family="Arial">• SearXNG (内网搜索)</text>
+  <text x="235" y="454" text-anchor="middle" font-size="10" fill="#f5c090" font-family="Arial">• GitHub (代码仓库)</text>
+  <text x="235" y="472" text-anchor="middle" font-size="10" fill="#f5c090" font-family="Arial">• CSDN (博客发布)</text>
+  <text x="235" y="490" text-anchor="middle" font-size="10" fill="#f5c090" font-family="Arial">• 阿里云 (DNS/安全组)</text>
+
+  <!-- Arrow: Server -> External -->
+  <line x1="500" y1="360" x2="320" y2="380" stroke="#e07b39" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="625" y1="360" x2="770" y2="380" stroke="#e07b39" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Domain -->
+  <rect x="670" y="380" width="200" height="130" rx="10" fill="#1e3a5f" stroke="#4a90d9" stroke-width="2"/>
+  <text x="770" y="410" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a90d9" font-family="Arial">🌍 域名 / HTTPS</text>
+  <text x="770" y="436" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">lsn.org.cn</text>
+  <text x="770" y="454" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">www.lsn.org.cn → hexo</text>
+  <text x="770" y="472" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">img.lsn.org.cn → 下载图片</text>
+  <text x="770" y="490" text-anchor="middle" font-size="10" fill="#7eb8da" font-family="Arial">downloads.lsn.org.cn → 文件</text>
+
+  <!-- Bottom note -->
+  <rect x="20" y="520" width="960" height="28" rx="6" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1"/>
+  <text x="500" y="540" text-anchor="middle" font-size="12" fill="#7eb8da" font-family="Arial">💡 这套架构跑着我的国际新闻推送、技术策展、CSDN自动发布、以及日常对话助手</text>
+</svg>

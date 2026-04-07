@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90d9;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#325c8a;stop-opacity:0.9"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#1e8449;stop-opacity:0.9"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e07b39;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#b85c20;stop-opacity:0.9"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="bigGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Grid lines (subtle) -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="180" fill="#4a90d9" fill-opacity="0.05"/>
+  <circle cx="1100" cy="530" r="220" fill="#e07b39" fill-opacity="0.05"/>
+  <circle cx="600" cy="315" r="280" fill="none" stroke="#4a90d9" stroke-opacity="0.08" stroke-width="1"/>
+
+  <!-- Left: AI Brain icon -->
+  <g transform="translate(80, 200)" filter="url(#bigGlow)">
+    <circle cx="90" cy="90" r="80" fill="none" stroke="#4a90d9" stroke-width="2" stroke-opacity="0.6"/>
+    <circle cx="90" cy="90" r="60" fill="none" stroke="#4a90d9" stroke-width="1.5" stroke-opacity="0.4"/>
+    <text x="90" y="75" text-anchor="middle" font-size="50">🧠</text>
+    <text x="90" y="115" text-anchor="middle" font-size="18" fill="#4a90d9" font-family="Arial">AI Model</text>
+  </g>
+
+  <!-- Arrow from AI to MCP -->
+  <g transform="translate(320, 280)" filter="url(#glow)">
+    <line x1="0" y1="35" x2="120" y2="35" stroke="#4a90d9" stroke-width="2.5" stroke-opacity="0.8"/>
+    <polygon points="120,20 155,35 120,50" fill="#4a90d9" fill-opacity="0.8"/>
+    <text x="78" y="18" text-anchor="middle" font-size="13" fill="#4a90d9" font-family="Arial" letter-spacing="2">MCP Protocol</text>
+  </g>
+
+  <!-- Center: MCP box -->
+  <g transform="translate(480, 180)" filter="url(#bigGlow)">
+    <rect x="0" y="0" width="240" height="220" rx="16" fill="#1a2744" stroke="#4a90d9" stroke-width="2" stroke-opacity="0.8"/>
+    <rect x="0" y="0" width="240" height="50" rx="16" fill="url(#blueGrad)"/>
+    <text x="120" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff" font-family="Arial">MCP Server</text>
+
+    <!-- Three icons inside -->
+    <rect x="20" y="65" width="60" height="60" rx="8" fill="#1e3a5f" stroke="#3498db" stroke-width="1.5"/>
+    <text x="50" y="102" text-anchor="middle" font-size="22">📄</text>
+    <text x="50" y="118" text-anchor="middle" font-size="9" fill="#a0c4e8" font-family="Arial">Resources</text>
+
+    <rect x="90" y="65" width="60" height="60" rx="8" fill="#3d1f1f" stroke="#e74c3c" stroke-width="2"/>
+    <text x="120" y="102" text-anchor="middle" font-size="22">🔧</text>
+    <text x="120" y="118" text-anchor="middle" font-size="9" fill="#f5a0a0" font-family="Arial">Tools ⭐</text>
+
+    <rect x="160" y="65" width="60" height="60" rx="8" fill="#2d1f3d" stroke="#9b59b6" stroke-width="1.5"/>
+    <text x="190" y="102" text-anchor="middle" font-size="22">💡</text>
+    <text x="190" y="118" text-anchor="middle" font-size="9" fill="#d0a0e0" font-family="Arial">Prompts</text>
+
+    <!-- Connection lines -->
+    <line x1="50" y1="125" x2="50" y2="155" stroke="#3498db" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+    <line x1="120" y1="125" x2="120" y2="155" stroke="#e74c3c" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+    <line x1="190" y1="125" x2="190" y2="155" stroke="#9b59b6" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+
+    <!-- DB/API icons -->
+    <rect x="20" y="155" width="200" height="50" rx="8" fill="#1e3a5f" stroke="#4a90d9" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="120" y="178" text-anchor="middle" font-size="20">🌐</text>
+    <text x="120" y="198" text-anchor="middle" font-size="11" fill="#7eb8da" font-family="Arial">DB · API · Files · More...</text>
+  </g>
+
+  <!-- Arrow from MCP to actions -->
+  <g transform="translate(780, 280)" filter="url(#glow)">
+    <line x1="0" y1="35" x2="100" y2="35" stroke="#27ae60" stroke-width="2.5" stroke-opacity="0.8"/>
+    <polygon points="100,20 135,35 100,50" fill="#27ae60" fill-opacity="0.8"/>
+    <text x="65" y="18" text-anchor="middle" font-size="13" fill="#27ae60" font-family="Arial" letter-spacing="2">Execute!</text>
+  </g>
+
+  <!-- Right: Action results -->
+  <g transform="translate(920, 195)" filter="url(#bigGlow)">
+    <rect x="0" y="0" width="200" height="190" rx="16" fill="#1a2744" stroke="#27ae60" stroke-width="2" stroke-opacity="0.8"/>
+    <rect x="0" y="0" width="200" height="45" rx="16" fill="url(#greenGrad)"/>
+    <text x="100" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#ffffff" font-family="Arial">Real Actions 🔥</text>
+
+    <text x="25" y="72" font-size="18">✅</text>
+    <text x="55" y="72" font-size="13" fill="#a0e8b0" font-family="Arial">Query Database</text>
+
+    <text x="25" y="102" font-size="18">✅</text>
+    <text x="55" y="102" font-size="13" fill="#a0e8b0" font-family="Arial">Call APIs</text>
+
+    <text x="25" y="132" font-size="18">✅</text>
+    <text x="55" y="132" font-size="13" fill="#a0e8b0" font-family="Arial">File Operations</text>
+
+    <text x="25" y="162" font-size="18">✅</text>
+    <text x="55" y="162" font-size="13" fill="#a0e8b0" font-family="Arial">Send Messages</text>
+  </g>
+
+  <!-- Title area -->
+  <text x="600" y="530" text-anchor="middle" font-size="42" font-weight="bold" fill="#ffffff" font-family="Arial, sans-serif" filter="url(#glow)">MCP协议深度实战</text>
+  <text x="600" y="570" text-anchor="middle" font-size="22" fill="#a0c4e8" font-family="Arial, sans-serif">让AI真正操控你的工具</text>
+
+  <!-- Bottom tag -->
+  <rect x="530" y="585" width="140" height="30" rx="15" fill="#4a90d9" fill-opacity="0.2" stroke="#4a90d9" stroke-width="1"/>
+  <text x="600" y="606" text-anchor="middle" font-size="13" fill="#4a90d9" font-family="Arial, sans-serif">Anthropic · Open Source</text>
+
+  <!-- Author -->
+  <text x="1150" y="610" text-anchor="end" font-size="12" fill="#666" font-family="Arial, sans-serif">lsn.org.cn</text>
+</svg>
